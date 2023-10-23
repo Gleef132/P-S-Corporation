@@ -73,8 +73,8 @@ class TrainingController {
 
 	async getTrainings(req, res) {
 		try {
-			const sortBy = req.headers.sort_by
-			const sortOption = req.headers.sort_option
+			const sortBy = req.headers.sort_by || 'All'
+			const sortOption = req.headers.sort_option || ''
 			let { page, limit } = req.query
 			page = page || 1
 			limit = limit || 12
