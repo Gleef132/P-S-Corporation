@@ -1,0 +1,268 @@
+@import '@/styles/mixins';
+
+.search {
+	max-width: 50%;
+	width: 100%;
+	margin: 10px 20px 0 20px;
+
+	&__list {
+		position: absolute;
+		background: $searchListBackground;
+		width: calc(100% + 1px);
+		height: fit-content;
+		min-height: 350px;
+		top: calc(100% + 1px);
+		left: 0;
+		border-radius: 5px;
+		padding: 20px 0 15px 0;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		opacity: 0;
+		transform: scale(0);
+		transition: transform 0s linear .1s;
+		line-height: 1.4;
+	}
+
+	&__link {
+		display: flex;
+		@include adaptiv-value('font-size', 16, 14, 0);
+		padding: 3px 0;
+		align-items: center;
+
+		&.active{
+			background: $searchListBackgroundHover;
+		}
+
+		&:hover {
+			background: $searchListBackgroundHover;
+		}
+	}
+
+	&__link__icon {
+		padding: 3px 15px 0 15px;
+	}
+
+	&__body {
+		height: 40px;
+		position: relative;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__content {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		background: $searchInputBackground;
+		border-radius: 40px 0px 0 40px;
+		padding-left: 15px;
+		border: 1px solid $searchBorderColor;
+		position: relative;
+		margin-left: 32px;
+		cursor: pointer;
+		flex: 1;
+
+		&.active {
+			&:focus-within {
+				border-color: aqua;
+				margin-left: 0px;
+				padding-left: 47px;
+
+				.search__content__icon {
+					display: block;
+				}
+
+				.search__list {
+					opacity: 1;
+					transform: scale(1);
+					transition: transform 0s linear 0s;
+				}
+			}
+		}
+	}
+
+	&__content__icon {
+		position: absolute;
+		left: 0;
+		padding: 0 15px;
+		display: none;
+	}
+
+	&__input {
+		background: none;
+		width: 100%;
+		display: flex;
+		@include adaptiv-value('font-size', 16, 14, 0);
+
+		&::placeholder {
+			@include adaptiv-value('font-size', 18, 14, 0);
+			color: $textDarkColor;
+		}
+	}
+
+	&__icon {
+		position: relative;
+		background: $searchBackground;
+		height: 100%;
+		width: 50px;
+		top: 50%;
+		transform: translate(0, -50%);
+		right: 0px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 1px solid $searchBorderColor;
+		border-radius: 0 40px 40px 0;
+		cursor: pointer;
+
+		svg {
+			height: 30px;
+			width: 30px;
+		}
+	}
+}
+
+@media(max-width: 1080px) {
+	.search {
+		margin-top: 0;
+		max-width: calc(100% - 200px);
+	}
+}
+
+@media(max-width: 600px) {
+	.search {
+		max-width: 100%;
+		flex: 1;
+
+		&__content {
+			display: none;
+		}
+
+		&__icon {
+			display: none;
+		}
+
+		&__mobile__body {
+			display: flex;
+			width: 100%;
+			justify-content: flex-end;
+			height: 100%;
+
+			&.active {
+				position: fixed;
+				top: 0;
+				left: 0;
+				height: 100vh;
+				z-index: 1000;
+				justify-content: space-between;
+
+				.search__mobile__content {
+					opacity: 1;
+					z-index: 1;
+				}
+
+				.search__mobile__input {
+					opacity: 1;
+					transition: all 0 ease 0s;
+				}
+
+				.search__mobile__list {
+					opacity: 1;
+					transition-delay: .3s;
+				}
+
+				.search__mobile__btn {
+					display: none;
+				}
+			}
+		}
+
+		&__mobile__content {
+			position: relative;
+			z-index: -100;
+			display: flex;
+			width: 100%;
+			flex-direction: column;
+			opacity: 0;
+		}
+
+		&__mobile__input {
+			opacity: 0;
+			display: flex;
+			padding: 10px 0;
+			background: $searchBackground;
+
+			input {
+				border-radius: 20px;
+				background: $searchListBackgroundHover;
+				padding: 0 10px;
+			}
+		}
+
+		&__mobile__input__icon {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			svg {
+				height: 30px;
+				width: 50px;
+			}
+		}
+
+		&__mobile__list {
+			height: 100%;
+			width: 100%;
+			opacity: 0;
+			background: $searchBackground;
+			padding: 10px 15px 15px;
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+			overflow: auto;
+			line-height: 1.4;
+			margin-top: -1px;
+
+			.search__mobile__link:last-child {
+				border: none;
+			}
+		}
+
+		&__mobile__link {
+			@include adaptiv-value('font-size', 20, 18, 0);
+			padding: 3px 0 5px 0;
+			align-items: center;
+			border-bottom: 1px solid $trainingFormInputErrorBackground;
+
+			&:hover {
+				background: $searchListBackgroundHover;
+			}
+		}
+
+		&__mobile__back__btn {
+			svg {
+				height: 30px;
+				width: 50px;
+
+				path {
+					stroke-width: 30;
+				}
+			}
+		}
+
+		&__mobile__btn {
+			svg {
+				height: 35px;
+				width: 35px;
+
+				path {
+					stroke-width: 2;
+				}
+			}
+		}
+	}
+}

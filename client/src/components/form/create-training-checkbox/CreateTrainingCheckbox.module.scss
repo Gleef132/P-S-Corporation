@@ -1,0 +1,44 @@
+@import '@/styles/mixins';
+
+.checkbox {
+	display: flex;
+	align-items: center;
+	@include adaptiv-value('gap', 15, 10, 0);
+	@include adaptiv-value('font-size', 18, 14, 0);
+	color: $textColorPrimary;
+	width: max-content;
+	cursor: pointer;
+
+	input {
+		display: none;
+
+		&:checked+span {
+			&::after {
+				transition: all 0.3s ease 0s;
+				transform: translate(-50%, -50%) scale(1);
+			}
+		}
+	}
+
+	span {
+		cursor: pointer;
+		width: 20px;
+		height: 20px;
+		border: 2px solid #fff;
+		border-radius: 50%;
+		display: inline-block;
+		position: relative;
+
+		&::after {
+			content: '';
+			width: 10px;
+			height: 10px;
+			background: #fff;
+			position: absolute;
+			border-radius: 50%;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%) scale(0);
+		}
+	}
+}

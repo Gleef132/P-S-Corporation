@@ -1,0 +1,15 @@
+@import '@/styles/mixins';
+
+.footer {
+	width: 100%;
+	position: absolute;
+	text-align: center;
+	transform: translate(0, -100%);
+	z-index: 2000;
+	padding: 15px 0;
+
+	&__text {
+		@include adaptiv-value('font-size', 20, 14, 0);
+		color: $textDarkColor;
+	}
+}

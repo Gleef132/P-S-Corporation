@@ -1,0 +1,115 @@
+@import '@/styles/mixins';
+
+.input {
+	border: 1px solid $trainingFormInputBorder;
+	border-radius: 5px;
+	padding: 0 15px;
+	position: relative;
+
+
+	&.error {
+		span {
+			color: $trainingFormInputTextColorError;
+		}
+
+		border: 1px solid $trainingFormInputBorderError;
+
+		&:focus-within {
+			span {
+				color: $trainingFormInputTextColorError;
+			}
+
+			border: 1px solid $trainingFormInputBorderError;
+
+			.input__error {
+				opacity: 1;
+				transform: translateY(calc(100% + 15px)) scale(1);
+			}
+		}
+
+		.input__counter {
+			color: $trainingFormInputTextColorError;
+			opacity: 1;
+
+		}
+
+	}
+
+	span {
+		display: flex;
+		color: $trainingFormInputTextColor;
+		@include adaptiv-value('font-size', 16, 14, 0);
+		align-items: center;
+		gap: 10px;
+	}
+
+	&:focus-within {
+		span {
+			color: $trainingFormInputTextColorFocus;
+		}
+
+		border: 1px solid $trainingFormInputBorderFocus;
+
+		.input__counter {
+			opacity: 1;
+		}
+	}
+
+	textarea {
+		padding-top: 5px;
+		background: none;
+		resize: none;
+		overflow: hidden;
+		color: white;
+		width: 100%;
+		height: 65px;
+	}
+
+	&__help {
+		position: relative;
+
+		svg {
+			width: 25px;
+			height: 25px;
+			fill: $trainingFormInputSvg;
+			color: $trainingFormInputSvg;
+			display: flex;
+			align-items: center;
+		}
+	}
+
+	&__counter {
+		position: absolute;
+		right: 10px;
+		bottom: 10px;
+		opacity: 0;
+		@include adaptiv-value('font-size', 14, 12, 0);
+	}
+
+	&__error {
+		position: absolute;
+		z-index: 100;
+		@include adaptiv-value('font-size', 16, 14, 0);
+		background: $trainingFormInputErrorBackground;
+		color: #fff;
+		padding: 7px 10px;
+		border-radius: 5px;
+		box-shadow: 5px 5px 10px #252525;
+		left: 0;
+		bottom: 0;
+		transform: translateY(calc(100% + 15px)) scale(0);
+		opacity: 0;
+
+		&::before {
+			content: '';
+			position: absolute;
+			left: 10px;
+			top: 0;
+			transform: translateY(calc(-100% + 1px));
+			background: transparent;
+			border-right: 8px solid transparent;
+			border-left: 8px solid transparent;
+			border-bottom: 8px solid $trainingFormInputErrorBackground;
+		}
+	}
+}

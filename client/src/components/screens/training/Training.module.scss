@@ -1,0 +1,205 @@
+@import '@/styles/mixins';
+
+.training {
+	height: 100%;
+	min-height: 100vh;
+	padding: 100px 0 0 0;
+
+	&__title {
+		@include adaptiv-value('font-size', 28, 18, 0);
+		margin-top: 15px;
+	}
+
+	&__video {
+		width: 100%;
+	}
+
+	&__top {
+		display: flex;
+		width: 100%;
+		@include adaptiv-value('gap', 100, 30, 0);
+		margin-top: 15px;
+	}
+
+	&__description {
+		@include adaptiv-value('font-size', 20, 12, 0);
+		width: 70%;
+	}
+
+	&__list {
+		width: 30%;
+		display: flex;
+		flex-direction: column;
+		@include adaptiv-value('gap', 15, 5, 0);
+	}
+
+	&__link {
+		@include adaptiv-value('font-size', 20, 14, 0);
+		list-style: inside;
+		white-space: nowrap;
+	}
+
+	&__bottom {
+		width: 100%;
+	}
+
+	&__comment__body {
+		width: 100%;
+	}
+
+	&__comments {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		margin-top: 20px;
+		padding-bottom: 20px;
+	}
+
+	&__comments__count {
+		@include adaptiv-value('font-size', 20, 14, 0);
+		margin-top: 20px;
+	}
+
+	&__comment__leave {
+		display: flex;
+		width: 100%;
+		gap: 10px;
+		margin-top: 20px;
+	}
+
+	&__comment {
+		display: flex;
+		width: 100%;
+		gap: 10px;
+		margin-top: 10px;
+	}
+
+	&__comment__img {
+		width: 50px;
+		height: 50px;
+		flex: 0 0 auto;
+		background: $imageBackground;
+		border-radius: 50%;
+		overflow: hidden;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			position: relative;
+		}
+	}
+
+	&__comment__content {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	&__comment__head {
+		display: flex;
+		gap: 10px;
+	}
+
+	&__comment__name {
+		@include adaptiv-value('font-size', 18, 12, 0);
+	}
+
+	&__comment__date {
+		color: $textDarkColor;
+		@include adaptiv-value('font-size', 16, 12, 0);
+	}
+
+	&__comment__text {
+		// @include adaptiv-value('font-size', 14, 12, 0);s
+		font-size: 14px;
+		max-height: 57px;
+		overflow: hidden;
+	}
+
+	&__comment__input {
+		background: none;
+		position: relative;
+		border-bottom: 1px solid $textDarkColor;
+		padding: 5px 0px;
+		@include adaptiv-value('font-size', 18, 14, 0);
+		resize: none;
+		height: 150px;
+		overflow: hidden;
+
+		&::placeholder {
+			color: $textDarkColor;
+		}
+
+		&:focus {
+			border-color: #fff;
+		}
+
+		&.active {
+			height: 40px;
+		}
+	}
+
+	&__comment__btns {
+		display: flex;
+		position: relative;
+		justify-content: flex-end;
+		gap: 10px;
+		margin-top: 10px;
+		display: none;
+
+		.traning__comment__btn:nth-child(1) {
+			background: none;
+			color: $textColorPrimary;
+
+			&:hover {
+				background: $searchBackgroundHover;
+			}
+		}
+
+		&.active {
+			display: flex;
+		}
+	}
+
+	&__comment__btn {
+		padding: 10px 25px;
+		border-radius: 20px;
+		background: #3ea6ff;
+		color: $textBlackColor;
+		font-weight: 500;
+		white-space: nowrap;
+		@include adaptiv-value('font-size', 16, 14, 0);
+
+		&:disabled {
+			color: $textDarkColor;
+			background: #363433;
+		}
+
+		&:hover {
+			background: #6ebcff;
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	.traning {
+		&__top {
+			flex-direction: column-reverse;
+			gap: 10px;
+		}
+
+		&__description {
+			width: 100%;
+		}
+	}
+}
+
+@media(max-width: 500px) {
+	.traning {
+		&__video__container {
+			padding: 0;
+		}
+	}
+}

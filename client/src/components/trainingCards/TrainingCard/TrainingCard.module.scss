@@ -1,0 +1,203 @@
+@import '@/styles/mixins';
+
+
+.card {
+	cursor: pointer;
+	width: 350px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	color: $textDarkColor;
+	@include adaptiv-value('font-size', 14, 12, 0);
+	// animation: cardShow .5s ease 1;
+	// animation-fill-mode: forwards;
+	opacity: 1;
+
+	// @for $i from 1 through 12 {
+	// 	&:nth-child(#{$i}) {
+	// 		animation-delay: calc(.5 + ($i / 10)) + s;
+	// 	}
+	// }
+
+	&__secondary {
+		flex-direction: row;
+		width: 100%;
+		gap: 20px;
+	}
+
+	&__right {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+		width: 100%;
+		overflow: hidden;
+
+		.card__title {
+			@include adaptiv-value('font-size', 22, 16, 0);
+			overflow: hidden;
+			text-overflow: ellipsis;
+			padding: 1px 0;
+			display: -moz-box;
+			-moz-box-orient: vertical;
+			display: -webkit-box;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+			line-clamp: 2;
+			box-orient: vertical;
+		}
+
+		.card__chanel {
+			@include adaptiv-value('font-size', 20, 14, 0);
+		}
+
+		.card__reviews {
+			@include adaptiv-value('font-size', 20, 14, 0);
+		}
+
+		.card__description {
+			@include adaptiv-value('font-size', 22, 16, 0);
+			width: 100%;
+			position: relative;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+		}
+	}
+
+	&:hover {
+		.card__img {
+			img {
+				border-radius: 0;
+			}
+		}
+	}
+
+	&__img {
+		width: 100%;
+		max-width: 350px;
+		@include adaptiv-value('height', 200, 180, 0);
+		background: $imageBackground;
+		border-radius: 20px;
+		position: relative;
+
+		img {
+			width: 350px;
+			height: 100%;
+			object-fit: cover;
+			border-radius: 20px;
+			transition: all 0.3s ease 0s;
+			z-index: -1;
+			position: relative;
+		}
+	}
+
+	&__title {
+		@include adaptiv-value('font-size', 16, 14, 0);
+		color: $textColorPrimary;
+	}
+
+	&__chanel {
+		transition: all 0.3s ease 0s;
+
+		&:hover {
+			color: $textColorPrimary;
+		}
+	}
+
+	&__reviews {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&__delete {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		top: 0;
+		left: 0;
+		background: rgba(0, 0, 0, .8);
+		color: $textColorPrimary;
+		flex-direction: column;
+		gap: 20px;
+		@include adaptiv-value('font-size', 18, 14, 0);
+		opacity: 0;
+		z-index: -1;
+		transition: all 0.3s ease 0s;
+
+
+		&.active {
+			opacity: 1;
+			z-index: 1;
+		}
+
+		&__btns {
+			display: flex;
+			@include adaptiv-value('gap', 30, 15, 0);
+		}
+
+		&__btn {
+			@include adaptiv-value('padding-top', 10, 5, 0);
+			@include adaptiv-value('padding-bottom', 10, 5, 0);
+			@include adaptiv-value('padding-left', 15, 10, 0);
+			@include adaptiv-value('padding-right', 15, 10, 0);
+			border-radius: 5px;
+			font-weight: 600;
+
+			&:nth-child(1) {
+				background: red;
+				transition: all 0.3s ease 0s;
+
+				&:hover {
+					background: rgba(255, 0, 0, .6);
+				}
+			}
+
+			&:nth-child(2) {
+				background: $trainingCardButtonBackground;
+				transition: all 0.3s ease 0s;
+
+				&:hover {
+					background: rgba(0, 0, 0, 1);
+				}
+			}
+		}
+	}
+}
+
+@keyframes cardShow {
+	from {
+		transform: translate(10%, 10%);
+		opacity: 0;
+	}
+
+	to {
+		transform: translate(0%, 0%);
+		opacity: 1;
+	}
+}
+
+@media(max-width: 768px) {
+	.card {
+
+		&__secondary {
+			flex-direction: column;
+			width: 100%;
+			align-items: center;
+			max-width: 350px;
+		}
+	}
+}
+
+@media(max-width: 400px) {
+	.card {
+
+		&__img {
+			img {
+				width: 100%;
+			}
+		}
+	}
+}

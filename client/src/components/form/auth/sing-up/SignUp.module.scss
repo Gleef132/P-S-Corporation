@@ -1,0 +1,75 @@
+@import '@/styles/mixins';
+
+.form {
+  &__inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  &__input {
+    @include adaptiv-value('font-size', 26, 18, 0);
+    border-bottom: 3px solid #fff;
+    color: $textColorPrimary;
+    background: none;
+    padding: 5px 0;
+    width: 100%;
+
+    &::placeholder {
+      color: $textDarkColor;
+    }
+  }
+
+  &__item {
+    position: relative;
+  }
+
+  &__icon {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translate(0, -50%);
+
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  &__btns {
+    display: flex;
+    width: 100%;
+    gap: 30px;
+    justify-content: space-evenly;
+  }
+
+  &__btn {
+    border-radius: 50px;
+    @include adaptiv-value('padding-top', 6, 3, 0);
+    @include adaptiv-value('padding-right', 20, 10, 0);
+    @include adaptiv-value('padding-bottom', 6, 3, 0);
+    @include adaptiv-value('padding-left', 20, 10, 0);
+    @include adaptiv-value('font-size', 20, 16, 0);
+    white-space: nowrap;
+  }
+
+  &__code__btn {
+    border-radius: 50px;
+    @include adaptiv-value('padding-top', 5, 2, 0);
+    @include adaptiv-value('padding-right', 15, 8, 0);
+    @include adaptiv-value('padding-bottom', 5, 2, 0);
+    @include adaptiv-value('padding-left', 15, 8, 0);
+    @include adaptiv-value('font-size', 18, 14, 0);
+    white-space: nowrap;
+    width: max-content;
+  }
+}
+
+@media(max-width: 560px) {
+  .form {
+    &__btns {
+      flex-direction: column;
+    }
+  }
+}

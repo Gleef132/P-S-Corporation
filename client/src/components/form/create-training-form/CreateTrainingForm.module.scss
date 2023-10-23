@@ -1,0 +1,507 @@
+@import '@/styles/mixins';
+
+.form {
+	background: $trainingFormBackgroundColor;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: calc(100vh - 200px);
+	width: 100%;
+	max-width: 1000px;
+	border-radius: 10px;
+	overflow: hidden;
+
+	&__head {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		@include adaptiv-value('padding', 25, 10, 0);
+		border-bottom: 1px solid $searchBackgroundHover;
+		gap: 10px;
+	}
+
+	&__title {
+		@include adaptiv-value('font-size', 22, 16, 0);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-width: 95%;
+		color: $textColorPrimary;
+	}
+
+	&__close {
+		width: 25px;
+		@include adaptiv-value('height', 25, 20, 0);
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transition: all 0.3s ease 0s;
+		cursor: pointer;
+		flex-shrink: 0;
+
+		&::before,
+		&::after {
+			content: '';
+			position: absolute;
+			width: 100%;
+			height: 1px;
+			background: $textDarkColor;
+		}
+
+		&::before {
+			transform: rotate(45deg);
+		}
+
+		&::after {
+			transform: rotate(-45deg);
+		}
+
+		&:hover {
+
+			&::before,
+			&::after {
+				background: #fff;
+			}
+		}
+	}
+
+	&__body {
+		display: flex;
+		width: 100%;
+		color: $trainingFormInputSvg;
+		@include adaptiv-value('gap', 40, 20, 0);
+		@include adaptiv-value('margin-top', 20, 10, 0);
+	}
+
+	&__left {
+		width: 60%;
+		display: flex;
+		flex-direction: column;
+		@include adaptiv-value('gap', 30, 15, 0);
+	}
+
+	&__item {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		text-align: left;
+	}
+
+	&__item__title {
+		color: $textColorPrimary;
+		@include adaptiv-value('font-size', 18, 14, 0);
+	}
+
+	&__item__text {
+		color: $textDarkColor;
+		@include adaptiv-value('font-size', 16, 12, 0);
+		line-height: 1.5;
+	}
+
+	&__icon__btn {
+		@include adaptiv-value('width', 200, 150, 0);
+		@include adaptiv-value('height', 90, 70, 0);
+		position: relative;
+		border: 1px dashed $trainingFormInputErrorBackground;
+		@include adaptiv-value('font-size', 18, 14, 0);
+		font-weight: 500;
+
+		label {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			height: 100%;
+			cursor: pointer;
+		}
+
+
+		&:hover {
+			background: #000000;
+			color: $textColorPrimary;
+
+			.training__form__icon__helper {
+				svg {
+					opacity: 1;
+					transition: all 0.3s ease 0s;
+				}
+			}
+
+			svg {
+				fill: #fff;
+			}
+		}
+
+		input {
+			display: none;
+		}
+
+		svg {
+			width: 25px;
+			height: 25px;
+			fill: $trainingFormInputSvg;
+		}
+	}
+
+	&__icon__helper {
+		position: absolute;
+		right: 5px;
+		top: 5px;
+		cursor: auto;
+		user-select: none;
+
+		svg {
+			fill: $trainingFormInputSvg;
+			color: $trainingFormInputSvg;
+			opacity: 1;
+			width: 25px;
+			height: 25px;
+
+			circle {
+				fill: $trainingFormInputSvg;
+			}
+		}
+	}
+
+	&__icon__helper__list {
+		margin: 10px 0 0 10px;
+		display: flex;
+		flex-direction: column;
+		gap: 3px;
+		padding: 0 0 0 10px;
+	}
+
+	&__icon__helper__link {
+		list-style: disc;
+		@include adaptiv-value('font-size', 14, 12, 0);
+	}
+
+	&__right {
+		width: 40%;
+		background: $trainingFormVideoBackground;
+		height: fit-content;
+		position: relative;
+		@include adaptiv-value('padding-bottom', 30, 20, 0);
+		border-radius: 5px;
+		text-align: left;
+	}
+
+	&__video {
+		width: 100%;
+
+		video {
+			width: 100%;
+		}
+	}
+
+	&__video__title {
+		@include adaptiv-value('font-size', 18, 14, 0);
+		padding: 0 15px;
+		margin: 10px 0;
+	}
+
+	&__video__text {
+		@include adaptiv-value('font-size', 16, 14, 0);
+		color: $textColorPrimary;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		padding: 0 15px;
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 10px;
+		text-align: center;
+		overflow-y: overlay;
+		@include adaptiv-value('padding-left', 25, 10, 0);
+		@include adaptiv-value('padding-right', 25, 10, 0);
+		@include adaptiv-value('padding-bottom', 25, 10, 0);
+
+		&::-webkit-scrollbar {
+			background: transparent;
+			width: 16px;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background: $trainingFormInputErrorBackground;
+			border-radius: 10px;
+			margin-right: 10px;
+			border: 4px solid transparent;
+			background-clip: content-box;
+
+			&:hover {
+				background: $trainingFormInputTextColor;
+				background-clip: content-box;
+			}
+		}
+	}
+
+	&__loader {
+		@include adaptiv-value('width', 130, 100, 0);
+		@include adaptiv-value('height', 130, 100, 0);
+		background: #000;
+		border-radius: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+		overflow: hidden;
+		margin-bottom: 10px;
+
+		&__rain:nth-child(1) {
+			@for $i from 1 through 6 {
+				&>li:nth-child(#{$i}) {
+					animation-delay: calc($i / 10) + s;
+					left: calc($i * 20) + px;
+					top: calc($i * 20) + px;
+				}
+			}
+		}
+
+		&__rain:nth-child(2) {
+			@for $i from 6 through 12 {
+				&>li:nth-child(#{$i}) {
+					animation-delay: calc($i / 10) + s;
+					right: calc($i * 20) + px;
+					top: calc($i * 20) + px;
+				}
+			}
+		}
+
+		&__rain:nth-child(3) {
+			@for $i from 12 through 18 {
+				&>li:nth-child(#{$i}) {
+					animation-delay: calc($i / 10) + s;
+				}
+			}
+
+			&>li:nth-child(1) {
+				left: 0;
+			}
+
+			&>li:nth-child(2) {
+				left: 20px;
+			}
+
+			&>li:nth-child(3) {
+				right: 0;
+			}
+
+			&>li:nth-child(4) {
+				right: 20px;
+			}
+
+			&>li:nth-child(5) {
+				right: 50%;
+				top: 0;
+			}
+
+			&>li:nth-child(6) {
+				right: 50%;
+				bottom: 0;
+			}
+		}
+
+		li {
+			opacity: 0;
+			position: absolute;
+			width: 5px;
+			height: 50px;
+			background: linear-gradient(to bottom, #ccc, #000);
+		}
+
+		&.active {
+			li {
+				animation: animate .5s linear infinite;
+			}
+
+			.training__form__loader__arrow {
+				transition: all 0.3s ease 0s;
+				margin-top: 0;
+				animation: arrowAnimate 1s linear 1.5s 1 forwards;
+
+				&::before {
+					opacity: 0;
+				}
+			}
+		}
+	}
+
+	&__loader__arrow {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: -15px;
+		transform-origin: bottom;
+
+		&::before {
+			content: '';
+			position: absolute;
+			@include adaptiv-value('width', 40, 30, 0);
+			@include adaptiv-value('height', 6, 5, 0);
+			background: #707070;
+			bottom: -15px;
+		}
+
+		svg {
+			@include adaptiv-value('width', 40, 30, 0);
+			fill: #707070;
+		}
+	}
+
+	&__text {
+		@include adaptiv-value('font-size', 18, 14, 0);
+		font-weight: 500;
+
+	}
+
+	&__subtitle {
+		@include adaptiv-value('font-size', 16, 12, 0);
+		color: $textDarkColor;
+		margin-bottom: 10px;
+	}
+
+	&__file {
+		display: none;
+	}
+
+	&__btn {
+		background: $trainingFormButtonBackground;
+		transition: all 0.3s ease 0s;
+		cursor: pointer;
+		@include adaptiv-value('padding-top', 10, 5, 0);
+		@include adaptiv-value('padding-bottom', 10, 5, 0);
+		@include adaptiv-value('padding-left', 30, 15, 0);
+		@include adaptiv-value('padding-right', 30, 15, 0);
+		@include adaptiv-value('font-size', 18, 14, 0);
+		border-radius: 4px;
+		color: #000;
+		font-weight: 500;
+
+		label {
+			display: inline-block;
+		}
+
+		&:hover {
+			background: $trainingFormButtonBackgroundHover;
+		}
+
+		&:disabled {
+			pointer-events: none;
+			background: $trainingFormButtonBackgroundDisabled;
+		}
+	}
+
+	&__item__input {
+		background: none;
+		border: 1px solid $trainingFormInputBorder;
+		@include adaptiv-value('padding-top', 8, 5, 0);
+		@include adaptiv-value('padding-bottom', 8, 5, 0);
+		@include adaptiv-value('padding-left', 15, 10, 0);
+		@include adaptiv-value('padding-right', 15, 10, 0);
+		@include adaptiv-value('font-size', 16, 12, 0);
+		color: $textColorPrimary;
+		border-radius: 5px;
+	}
+
+	&__footer {
+		@include adaptiv-value('font-size', 14, 12, 0);
+		@include adaptiv-value('padding-left', 25, 10, 0);
+		@include adaptiv-value('padding-right', 25, 10, 0);
+		@include adaptiv-value('padding-top', 10, 5, 0);
+		@include adaptiv-value('padding-bottom', 10, 5, 0);
+		border-top: 1px solid $searchBackgroundHover;
+		color: $textDarkColor;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: 60px;
+		gap: 10px;
+		line-height: 1.2;
+	}
+}
+
+.helper {
+	&__list {
+		margin: 10px 0 0 10px;
+		display: flex;
+		flex-direction: column;
+		gap: 3px;
+		padding: 0 0 0 10px;
+	}
+
+	&__link {
+		list-style: disc;
+		@include adaptiv-value('font-size', 14, 12, 0);
+	}
+}
+
+.silver {
+	color: $trainingFormInputTextColor;
+}
+
+@keyframes animate {
+	from {
+		opacity: 1;
+		transform: translateY(100px) rotate(5deg);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(-130px) rotate(5deg);
+	}
+}
+
+@keyframes arrowAnimate {
+	0% {
+		margin-top: 0;
+	}
+
+	50% {
+		margin-top: 0;
+		transform: scaleY(.5);
+	}
+
+	60% {
+		transform: scaleY(1);
+	}
+
+	100% {
+		margin-top: -500px;
+	}
+}
+
+@media(max-width: 768px) {
+	.form {
+		&__body {
+			flex-direction: column-reverse;
+		}
+
+		&__left {
+			width: 100%;
+		}
+
+		&__right {
+			width: 100%;
+		}
+	}
+}
+
+@media(max-width: 425px) {
+	.form {
+		border-radius: 0;
+		height: 100%;
+
+		* {
+			&::-webkit-scrollbar {
+				width: 0px;
+			}
+		}
+	}
+}

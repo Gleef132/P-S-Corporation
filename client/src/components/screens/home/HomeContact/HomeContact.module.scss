@@ -1,0 +1,169 @@
+@import '@/styles/mixins';
+
+.contact {
+	background: url('/contact-bg.jpg') center no-repeat;
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+	padding: 150px 0;
+	color: $textColorPrimary;
+	position: relative;
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+
+	&::before {
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.3);
+		left: 0;
+		top: 0;
+	}
+
+	&__container {
+		width: 100%;
+	}
+
+	&__content {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		width: 100%;
+		@include adaptiv-value('gap', 150, 20, 0);
+		align-items: center;
+	}
+
+	&__form {
+		display: flex;
+		flex-direction: column;
+		@include adaptiv-value('gap', 50, 20, 0);
+		width: 50%;
+	}
+
+	&__form__items {
+		display: flex;
+		gap: 50px;
+		width: 100%;
+	}
+
+	&__form__item {
+		width: 100%;
+	}
+
+	&__form__item__title {
+		@include adaptiv-value('font-size', 24, 18, 0);
+	}
+
+	&__form__item__input {
+		width: 100%;
+		background: none;
+		padding: 10px 0px;
+		position: relative;
+		z-index: 100;
+		border-bottom: 3px solid #fff;
+
+		&:focus {
+			transition: all 0.5s ease 0s;
+			border-bottom: 3px solid $contactIconColor;
+		}
+	}
+
+	&__form__item__textarea {
+		width: 100%;
+		resize: none;
+		background: rgba(0, 0, 0, .5);
+		border-bottom: 3px solid #fff;
+		@include adaptiv-value('height', 200, 120, 0);
+
+		&:focus {
+			transition: all 0.5s ease 0s;
+			border-bottom: 3px solid $contactIconColor;
+		}
+	}
+
+	&__btn {
+		text-align: center;
+		@include adaptiv-value('font-size', 24, 18, 0);
+		@include adaptiv-value('padding-top', 10, 8, 0);
+		@include adaptiv-value('padding-bottom', 10, 8, 0);
+		@include adaptiv-value('padding-left', 20, 15, 0);
+		@include adaptiv-value('padding-right', 20, 15, 0);
+		width: max-content;
+		background: $contactIconColor;
+		border-radius: 10px;
+
+		&:hover {
+			transition: all 0.3s ease 0s;
+			background: rgba($color: $contactIconColor, $alpha: .8);
+		}
+
+		&:focus {
+			background: rgba($color: $contactIconColor, $alpha: .8);
+		}
+	}
+
+	&__items {
+		display: grid;
+		grid-template-columns: auto auto;
+		@include adaptiv-value('grid-gap', 40, 5, 0);
+		width: 50%;
+	}
+
+	&__item {
+		@include adaptiv-value('width', 300, 150, 0);
+		@include adaptiv-value('height', 300, 150, 0);
+		background: rgba(0, 0, 0, 0.7);
+		border-radius: 20px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		@include adaptiv-value('gap', 30, 20, 0);
+	}
+
+	&__item__svg {
+		@include adaptiv-value('width', 80, 40, 0);
+		@include adaptiv-value('height', 80, 40, 0);
+		color: $contactIconColor;
+		fill: $contactIconColor;
+	}
+
+	&__item__title {
+		@include adaptiv-value('font-size', 24, 18, 0);
+	}
+
+	&__item__text {
+		@include adaptiv-value('font-size', 16, 14, 0);
+		color: $textDarkColor;
+	}
+
+	&__item__link {
+		@include adaptiv-value('font-size', 16, 12, 0);
+		color: $contactIconColor;
+		padding-bottom: 5px;
+		border-bottom: 1px solid $contactIconColor;
+		cursor: pointer;
+		word-break: break-all;
+	}
+}
+
+@media(max-width: 768px) {
+	.contact {
+		&__content {
+			align-items: center;
+			flex-direction: column;
+		}
+
+		&__form {
+			width: 100%;
+		}
+
+		&__items {
+			width: 100%;
+			justify-content: center;
+		}
+	}
+}

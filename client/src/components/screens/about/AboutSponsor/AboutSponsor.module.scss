@@ -1,0 +1,74 @@
+@import '@/styles/mixins';
+
+.about {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	padding: 100px 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+
+	&__bg {
+		object-fit: cover;
+		object-position: center;
+		z-index: -1;
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		gap: 50px;
+	}
+
+	&__title {
+		@include adaptiv-value('font-size', 48, 32, 0);
+		font-weight: 700;
+		letter-spacing: .100em;
+	}
+
+	&__subtitle {
+		font-weight: 600;
+		@include adaptiv-value('font-size', 20, 16, 0);
+	}
+
+	&__items {
+		display: flex;
+		@include adaptiv-value('gap', 125, 10, 0);
+		justify-content: center;
+	}
+
+	&__item {
+		svg {
+			@include adaptiv-value('width', 80, 40, 0);
+			@include adaptiv-value('height', 80, 40, 0);
+			fill: #fff;
+		}
+	}
+
+	&__btn {
+		@include adaptiv-value('padding-top', 8, 5, 0);
+		@include adaptiv-value('padding-bottom', 8, 5, 0);
+		@include adaptiv-value('padding-left', 10, 8, 0);
+		@include adaptiv-value('padding-right', 10, 8, 0);
+		border: 3px solid $auqaColorSecondary;
+		border-radius: 30px;
+		width: max-content;
+		left: 50%;
+		position: relative;
+		transform: translateX(-50%);
+		transition: all 0.3s ease 0s;
+
+		&:hover {
+			border-color: $auqaColorPrimary;
+			background: $auqaColorPrimary;
+		}
+
+		span {
+			@include adaptiv-value('font-size', 22, 18, 0);
+			font-weight: 600;
+			letter-spacing: 3px;
+		}
+	}
+}

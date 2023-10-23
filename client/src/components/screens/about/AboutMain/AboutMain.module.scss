@@ -1,0 +1,46 @@
+@import '@/styles/mixins';
+
+.about {
+	width: 100%;
+	padding: 100px 0;
+	min-height: 100vh;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	position: relative;
+
+	&__bg {
+		object-fit: cover;
+		object-position: center;
+		// position: relative;
+		z-index: -1;
+	}
+
+	&__content {
+		width: 100%;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		@include adaptiv-value('gap', 50, 20, 0);
+	}
+
+	&__logo {
+		svg {
+			@include adaptiv-value('width', 250, 150, 0);
+			@include adaptiv-value('height', 250, 150, 0);
+
+			path {
+				fill: #fff;
+			}
+		}
+	}
+
+	&__title {
+		@include adaptiv-value('font-size', 48, 28, 0);
+		font-weight: 700;
+	}
+
+	&__subtitle {
+		@include adaptiv-value('font-size', 32, 14, 0);
+	}
+}

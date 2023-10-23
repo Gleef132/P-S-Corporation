@@ -1,0 +1,84 @@
+@import '@/styles/mixins';
+
+.profile {
+	height: 100%;
+	min-height: 100vh;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 100px 0;
+
+	&__bg {
+		z-index: -1;
+	}
+
+	&__container {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+
+	&__form {
+		display: flex;
+		flex-direction: column;
+		@include adaptiv-value('gap', 20, 10, 0);
+		@include adaptiv-value('width', 700, 300, 0);
+
+		.profile__item:nth-child(1) {
+			text-align: center;
+		}
+	}
+
+	&__item {
+		width: 100%;
+	}
+
+	&__img {
+		cursor: pointer;
+		border-radius: 50%;
+		@include adaptiv-value('width', 180, 100, 0);
+		@include adaptiv-value('height', 180, 100, 0);
+		object-fit: cover;
+		background: $imageBackground;
+	}
+
+	&__file {
+		display: none;
+	}
+
+	&__title {
+		@include adaptiv-value('font-size', 20, 16, 0);
+	}
+
+	&__input {
+		width: 100%;
+		background: none;
+		border-bottom: 1px solid #fff;
+		transition: all 0.3s ease 0s;
+		padding: 10px 15px;
+		@include adaptiv-value('font-size', 16, 14, 0);
+
+		&::placeholder {
+			color: $textDarkColor;
+		}
+
+		&:focus {
+			border-color: $auqaColorPrimary;
+		}
+	}
+
+	&__btn {
+		background: $auqaColorPrimary;
+		transition: all 0.3s ease 0s;
+		padding: 8px 50px;
+		width: max-content;
+		margin: 5px auto 0px;
+		border-radius: 50px;
+		@include adaptiv-value('font-size', 20, 16, 0);
+
+		&:hover {
+			background: $auqaColorSecondary;
+		}
+	}
+}

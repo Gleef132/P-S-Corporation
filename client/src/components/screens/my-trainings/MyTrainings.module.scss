@@ -1,0 +1,62 @@
+@import '@/styles/mixins';
+
+.training {
+	min-height: 100vh;
+	height: 100%;
+	padding: 100px 0 100px 0;
+
+	&__title {
+		text-align: center;
+	}
+
+	&__content {
+		width: 100%;
+	}
+
+	&__nav {
+		width: 100%;
+		margin-top: 15px;
+	}
+
+	&__list {
+		display: flex;
+		@include adaptiv-value('gap', 30, 10, 0);
+
+		@for $i from 1 through 3 {
+			&>li:nth-child(#{$i}) {
+				animation-delay: calc($i / 10) + s;
+			}
+		}
+	}
+}
+
+@keyframes animate {
+	from {
+		opacity: 1;
+		transform: translateY(100px) rotate(5deg);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(-130px) rotate(5deg);
+	}
+}
+
+@keyframes arrowAnimate {
+	0% {
+		margin-top: 0;
+	}
+
+	50% {
+		margin-top: 0;
+		transform: scaleY(.5);
+	}
+
+	60% {
+		transform: scaleY(1);
+	}
+
+	100% {
+		margin-top: -500px;
+	}
+}

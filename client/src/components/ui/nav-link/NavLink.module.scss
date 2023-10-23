@@ -1,0 +1,45 @@
+@import '@/styles/mixins';
+
+.btn {
+	cursor: pointer;
+	transition: all 0.3s ease 0s;
+	white-space: nowrap;
+	@include adaptiv-value('font-size', 18, 14, 0);
+	background: $searchBackground;
+	padding: 10px 15px;
+	border-radius: 10px;
+	position: relative;
+	animation: linkShow .4s ease 1;
+	animation-fill-mode: forwards;
+	opacity: 0;
+
+	&:hover {
+		background: #fff;
+		color: #000;
+	}
+
+	&.active {
+		background: #fff;
+		color: #000;
+	}
+}
+
+.secondary {
+	background: $auqaColorPrimary;
+
+	&:hover {
+		background: $auqaColorSecondary;
+	}
+}
+
+@keyframes linkShow {
+	from {
+		transform: translateX(-50%);
+		opacity: 0;
+	}
+
+	to {
+		transform: translateX(0%);
+		opacity: 1;
+	}
+}

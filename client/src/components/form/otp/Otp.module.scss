@@ -1,0 +1,28 @@
+@import '@/styles/mixins';
+
+.form {
+  &__code {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+    justify-content: center;
+
+    input {
+      @include adaptiv-value('max-width', 40, 30, 0);
+      text-align: center;
+    }
+  }
+
+  &__input {
+    @include adaptiv-value('font-size', 26, 18, 0);
+    border-bottom: 3px solid #fff;
+    color: $textColorPrimary;
+    background: none;
+    padding: 5px 0;
+    width: 100%;
+
+    &::placeholder {
+      color: $textDarkColor;
+    }
+  }
+}
