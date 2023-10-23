@@ -17,6 +17,8 @@ const Layout: FC<PropsWithChildren<unknown>> = ({ children }) => {
 		dispatch(saveSearchTitles(data!));
 	}, [data]);
 
+	console.log(process.env.SERVER_API)
+
 	return (
 		<>
 			<Alert key={alertKey} />
