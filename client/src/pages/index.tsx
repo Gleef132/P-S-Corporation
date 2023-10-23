@@ -15,7 +15,7 @@ export default indexPage
 export const getStaticProps: GetStaticProps<Props> = async () => {
 	// const { data } = traningApi.useFetchPopularTraningsQuery('')
 	try {
-		const response = await fetch('http://localhost:5000/api/trainings-popular')
+		const response = await fetch(`${process.env.SERVER_API}api/trainings-popular`)
 		const data = await response.json()
 		return {
 			props: {
