@@ -22,7 +22,6 @@ interface IComments {
 	id: string;
 }
 
-
 export const trainingApi = createApi({
 	reducerPath: 'trainingApi',
 	baseQuery: fetchBaseQuery({ baseUrl: `${process.env.SERVER_API}api` }),
