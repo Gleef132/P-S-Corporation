@@ -25,7 +25,7 @@ interface IComments {
 
 export const trainingApi = createApi({
 	reducerPath: 'trainingApi',
-	baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api' }),
+	baseQuery: fetchBaseQuery({ baseUrl: `${process.env.SERVER_API}/api` }),
 	extractRehydrationInfo(action) {
 		if (action.type === HYDRATE) {
 			return action.payload.api
