@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const mealApi = createApi({
 	reducerPath: 'mealApi',
-	baseQuery: fetchBaseQuery({ baseUrl: `${process.env.SERVER_API}api` }),
+	baseQuery: fetchBaseQuery({ baseUrl: `https://p-s-corporation-server.vercel.app/api` }),
 	endpoints: build => ({
 		fetchNutritions: build.query<IMeals, string>({
 			query: () => ({
