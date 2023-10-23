@@ -14,13 +14,20 @@ const TrainingPage: NextPage<Props> = ({ training }) => {
 export default TrainingPage
 
 export const getServerSideProps: GetServerSideProps<Props> = async ({ params }) => {
+	try {
+		const response = await fetch(`${process.env.SERVER_API}api/trainings/${params?.id}`)
+		const data = await response.json()
 
-	const response = await fetch(`${process.env.SERVER_API}api/trainings/${params?.id}`)
-	const data = await response.json()
-
-	return {
-		props: {
-			training: data
+		return {
+			props: {
+				training: data
+			}
+		}
+	} catch (e) {
+		return {
+			props: {
+				training: {}
+			}
 		}
 	}
 }
