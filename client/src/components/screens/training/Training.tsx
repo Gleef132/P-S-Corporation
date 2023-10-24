@@ -10,6 +10,7 @@ import cl from './Training.module.scss'
 const Training: FC<ITraining> = (training) => {
 
 	const [value, setValue] = useState<string>('')
+	const [isCommentCreated, setIsCommentCreated] = useState<boolean>(false)
 	const [commentActive, setCommentActive] = useState<boolean>(false)
 	const [comments, setComments] = useState<IComment[]>([])
 	const { profileImg, userName } = useAppSelector(state => state.authReducer)
@@ -26,6 +27,11 @@ const Training: FC<ITraining> = (training) => {
 		if (isLoading) return;
 		if (isFetching) return;
 		if (data) {
+			if (isCommentCreated) {
+				setComments([...comments, data.data[data.data.length - 1]])
+				setIsCommentCreated(false)
+				return
+			}
 			if (page === 1) {
 				setComments([...data?.data])
 			} else {
@@ -53,6 +59,7 @@ const Training: FC<ITraining> = (training) => {
 		await saveComment(comment)
 			.unwrap()
 			.then(res => {
+				setIsCommentCreated(true)
 				setValue('')
 				refetch()
 			})
