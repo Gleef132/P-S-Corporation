@@ -186,16 +186,16 @@ class TrainingController {
 
 	async createTraining(req, res) {
 		try {
-			const token = req.headers.authorization.split(' ')[1]
-			const decodeIdData = jwt.verify(token, process.env.SECRET_JWT)
-			const id = decodeIdData.id
-			const user = await User.findById(id)
+			// const token = req.headers.authorization.split(' ')[1]
+			// const decodeIdData = jwt.verify(token, process.env.SECRET_JWT)
+			// const id = decodeIdData.id
+			// const user = await User.findById(id)
 
-			const { title, description, amountExercise, gender, trainingMode, level } = req.body
-			const posterPath = req.files[0].fieldname === 'path' ? req.files[0].path : req.files[1].path
-			const videoPath = req.files[1].fieldname === 'video' ? req.files[1].path : req.files[0].path
-			const date = getDateNow()
-			const from = user.userName
+			// const { title, description, amountExercise, gender, trainingMode, level } = req.body
+			// const posterPath = req.files[0].fieldname === 'path' ? req.files[0].path : req.files[1].path
+			// const videoPath = req.files[1].fieldname === 'video' ? req.files[1].path : req.files[0].path
+			// const date = getDateNow()
+			// const from = user.userName
 
 
 
@@ -207,7 +207,7 @@ class TrainingController {
 
 			// training.save()
 
-			res.json({ message: 'Success', lll: [user, title, description, amountExercise, gender, trainingMode, level, posterPath, videoPath, date, from] })
+			res.json({ message: 'Success' })
 		} catch (e) {
 			console.log(e)
 			res.status(400).json({ message: 'Error' })
