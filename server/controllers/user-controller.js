@@ -98,7 +98,7 @@ class UserController {
 			const id = decodeIdData.id
 			const user = await User.findById(id)
 			if (user.path !== process.env.SERVER_URL + '/' + 'static/avatar.jpg' && req.file.path) {
-				const unlinkPath = user.path.replace('http://localhost:5000/', '')
+				const unlinkPath = user.path.replace(process.env.SERVER_URL, '')
 				unlinkAsync('' + unlinkPath)
 			}
 			await User.findByIdAndUpdate(id, {

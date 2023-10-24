@@ -219,11 +219,12 @@ class TrainingController {
 			const { userName, comment, path, id } = req.body
 			const _id = id
 			const training = await Training.findById(_id)
-			const now = Date.now()
+			const date = getDateNow()
+
 
 			await Training.findByIdAndUpdate(_id, {
 				$set: {
-					comments: [...training.comments, { userName: userName, comment: comment, date: now, path: path }]
+					comments: [...training.comments, { userName: userName, comment: comment, date: date, path: path }]
 				}
 			}, {
 				new: true,
