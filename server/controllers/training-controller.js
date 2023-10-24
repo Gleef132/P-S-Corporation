@@ -199,15 +199,15 @@ class TrainingController {
 
 
 
-			const training = new Training({
-				title: title, amountExercise: amountExercise, level: level, path: process.env.SERVER_URL + '/' + posterPath, video: process.env.SERVER_URL + '/' + videoPath, trainingMode: trainingMode,
-				date: date, from: from, description: description, comments: [],
-				reviews: 0, type: '', gender: gender
-			})
+			// const training = new Training({
+			// 	title: title, amountExercise: amountExercise, level: level, path: process.env.SERVER_URL + '/' + posterPath, video: process.env.SERVER_URL + '/' + videoPath, trainingMode: trainingMode,
+			// 	date: date, from: from, description: description, comments: [],
+			// 	reviews: 0, type: '', gender: gender
+			// })
 
-			training.save()
+			// training.save()
 
-			res.json({ message: 'Success' })
+			res.json({ message: 'Success', lll: [user, title, description, amountExercise, gender, trainingMode, level, posterPath, videoPath, date, from] })
 		} catch (e) {
 			console.log(e)
 			res.status(400).json({ message: 'Error' })
