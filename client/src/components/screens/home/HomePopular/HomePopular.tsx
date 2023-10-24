@@ -15,14 +15,14 @@ const HomePopular: FC<IPopularTrainings> = (trainings) => {
 						<div className={cl.popular__slider}>
 							<div className={`${cl.popular__slides} ${cl.popular__slides__left}`} >
 								{trainings?.cardio ? trainings?.cardio.map((item) => {
-									return <Link href={`/traning/${item._id}`} className={cl.popular__slide} key={item._id}>
+									return <Link href={`/training/${item._id}`} className={cl.popular__slide} key={item._id}>
 										<img src={item.path as string} alt="image didn't load" />
 									</Link>
 								}) : <></>}
 							</div>
 							<div className={`${cl.popular__slides} ${cl.popular__slides__left}`} >
 								{trainings?.cardio ? trainings?.cardio.map((item) => {
-									return <Link href={`/traning/${item._id}`} className={cl.popular__slide} key={item._id}>
+									return <Link href={`/training/${item._id}`} className={cl.popular__slide} key={item._id}>
 										<img src={item.path as string} alt="image didn't load" />
 									</Link>
 								}) : <></>}
@@ -34,14 +34,14 @@ const HomePopular: FC<IPopularTrainings> = (trainings) => {
 						<div className={cl.popular__slider}>
 							<div className={`${cl.popular__slides} ${cl.popular__slides__right}`} >
 								{trainings?.cardio ? trainings?.endurance.map((item) => {
-									return <Link href={`/traning/${item._id}`} className={cl.popular__slide} key={item._id}>
+									return <Link href={`/training/${item._id}`} className={cl.popular__slide} key={item._id}>
 										<img src={item.path as string} alt="image didn't load" />
 									</Link>
 								}) : <></>}
 							</div>
 							<div className={`${cl.popular__slides} ${cl.popular__slides__right}`} >
 								{trainings?.cardio ? trainings?.endurance.map((item) => {
-									return <Link href={`/traning/${item._id}`} className={cl.popular__slide} key={item._id}>
+									return <Link href={`/training/${item._id}`} className={cl.popular__slide} key={item._id}>
 										<img src={item.path as string} alt="image didn't load" />
 									</Link>
 								}) : <></>}
@@ -53,14 +53,14 @@ const HomePopular: FC<IPopularTrainings> = (trainings) => {
 						<div className={cl.popular__slider}>
 							<div className={`${cl.popular__slides} ${cl.popular__slides__left}`} >
 								{trainings?.cardio ? trainings?.power.map((item) => {
-									return <Link href={`/traning/${item._id}`} className={cl.popular__slide} key={item._id}>
+									return <Link href={`/training/${item._id}`} className={cl.popular__slide} key={item._id}>
 										<img src={item.path as string} alt="image didn't load" />
 									</Link>
 								}) : <></>}
 							</div>
 							<div className={`${cl.popular__slides} ${cl.popular__slides__left}`} >
 								{trainings?.cardio ? trainings?.power.map((item) => {
-									return <Link href={`/traning/${item._id}`} className={cl.popular__slide} key={item._id}>
+									return <Link href={`/training/${item._id}`} className={cl.popular__slide} key={item._id}>
 										<img src={item.path as string} alt="image didn't load" />
 									</Link>
 								}) : <></>}
@@ -72,14 +72,14 @@ const HomePopular: FC<IPopularTrainings> = (trainings) => {
 						<div className={cl.popular__slider}>
 							<div className={`${cl.popular__slides} ${cl.popular__slides__right}`} >
 								{trainings?.cardio ? trainings?.yoga.map((item) => {
-									return <Link href={`/traning/${item._id}`} className={cl.popular__slide} key={item._id}>
+									return <Link href={`/training/${item._id}`} className={cl.popular__slide} key={item._id}>
 										<img src={item.path as string} alt="image didn't load" />
 									</Link>
 								}) : <></>}
 							</div>
 							<div className={`${cl.popular__slides} ${cl.popular__slides__right}`} >
 								{trainings?.cardio ? trainings?.yoga.map((item) => {
-									return <Link href={`/traning/${item._id}`} className={cl.popular__slide} key={item._id}>
+									return <Link href={`/training/${item._id}`} className={cl.popular__slide} key={item._id}>
 										<img src={item.path as string} alt="image didn't load" />
 									</Link>
 								}) : <></>}
