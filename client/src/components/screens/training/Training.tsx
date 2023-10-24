@@ -1,4 +1,4 @@
-import Comment from '@/components/ui/comment/Comment'
+import Comment from '@/components/comment/Comment'
 import { useAppSelector } from '@/hooks/redux'
 import useAutosizeTextArea from '@/hooks/useAutosizeTextArea'
 import useObserver from '@/hooks/useObserver'

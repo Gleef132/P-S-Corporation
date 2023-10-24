@@ -3,7 +3,7 @@ import Footer from './footer/Footer';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { searchTitleSlice } from '@/store/reducers/SearchTitleSlice';
 import { trainingApi } from '@/services/TrainingService';
-import Alert from '../ui/alert/Alert';
+import Alert from '../alert/Alert';
 import Header from './header/Header';
 
 const Layout: FC<PropsWithChildren<unknown>> = ({ children }) => {

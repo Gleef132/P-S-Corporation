@@ -1,7 +1,7 @@
 import NavLink from '@/components/ui/nav-link/NavLink'
 import React, { FC, useRef, useState } from 'react'
 import cl from './MyTrainings.module.scss'
-import Helper, { RefType } from '@/components/ui/helper/Helper'
+import Helper, { RefType } from '@/components/helper/Helper'
 import MyTrainingList from '@/components/trainingCards/MyTrainingList/MyTrainingList'
 import CreateTrainingForm from '@/components/form/create-training-form/CreateTrainingForm'
 import { useAppDispatch, useAppSelector } from '@/hooks/redux'
