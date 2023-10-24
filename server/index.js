@@ -14,7 +14,7 @@ app.use(express.json())
 app.use(cors())
 app.use('/api', router)
 app.use(fileUpload({}))
-app.use('/static', express.static(path.resolve(__dirname, 'static')))
+app.use('/static', express.static(path.join(__dirname, 'static')))
 const start = async () => {
 	try {
 		await mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })
