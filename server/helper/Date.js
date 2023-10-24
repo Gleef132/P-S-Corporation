@@ -7,7 +7,7 @@ const getDateNow = () => {
 	const month = Months[date.getMonth()]
 	const year = date.getFullYear()
 
-	return `${day} ${month}-${year}`
+	return `${day} ${month} ${year}`
 }
 
 module.exports = getDateNow
