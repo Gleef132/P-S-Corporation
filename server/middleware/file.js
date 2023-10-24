@@ -3,9 +3,10 @@ const multer = require('multer')
 
 const storage = multer.diskStorage({
 	destination(req, file, cb) {
-		// if (!fs.existsSync('static')) {
-		// 	fs.mkdirSync('static')
-		// }
+		if (!fs.existsSync('static')) {
+			fs.mkdirSync('static')
+			req.status(400).json({ message: 'lox' })
+		}
 		cb(null, 'static/')
 	},
 	filename(req, file, cb) {
