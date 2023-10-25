@@ -61,7 +61,10 @@ const MyTrainingList: FC<Props> = ({ sortBy }) => {
 			// }
 			refetch()
 				.unwrap()
-				.then(res => fetchTrainings())
+				.then(res => {
+					console.log('then')
+					fetchTrainings()
+				})
 			if (page !== 1) setPage(1)
 			dispatch(refechMyTraining(false))
 		}
@@ -75,6 +78,7 @@ const MyTrainingList: FC<Props> = ({ sortBy }) => {
 
 	useEffect(() => {
 		if (data) {
+			console.log(data.data.length)
 			if (data.data.length === 0) {
 				dispatch(myTrainingsNotFoundChange(true))
 			} else {
