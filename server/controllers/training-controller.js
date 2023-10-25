@@ -31,28 +31,40 @@ class TrainingController {
 			const trainings = await Training.find()
 			const trainingsSorted = quickSort(trainings)
 			const result = { cardio: [], endurance: [], power: [], yoga: [] }
-			let count = 0;
-			trainingsSorted.forEach((item, index) => {
-				if (count < 24) {
-					count++;
-					switch (item.type) {
-						case 'cardio':
+			let i = 0;
+			let condition = true;
+
+			while (condition) {
+				const item = trainingsSorted[i]
+				i++
+				switch (item.type) {
+					case 'cardio':
+						if (result.cardio.length < 6) {
 							result.cardio = [...result.cardio, item]
-							break;
-						case 'endurance':
+						}
+						break;
+					case 'endurance':
+						if (result.endurance.length < 6) {
 							result.endurance = [...result.endurance, item]
-							break;
-						case 'power':
+						}
+						break;
+					case 'power':
+						if (result.power.length < 6) {
 							result.power = [...result.power, item]
-							break;
-						case 'yoga':
+						}
+						break;
+					case 'yoga':
+						if (result.yoga.length < 6) {
 							result.yoga = [...result.yoga, item]
-							break;
-						default:
-							break;
-					}
+						}
+						break;
+					default:
+						break;
 				}
-			})
+				if (result.cardio.length > 5 && result.endurance.length > 5 && result.power.length > 5 && result.yoga.length > 5) {
+					condition = false
+				}
+			}
 			res.json(result)
 		} catch (e) {
 			console.log(e)
@@ -186,26 +198,26 @@ class TrainingController {
 
 	async createTraining(req, res) {
 		try {
-			// const token = req.headers.authorization.split(' ')[1]
-			// const decodeIdData = jwt.verify(token, process.env.SECRET_JWT)
-			// const id = decodeIdData.id
-			// const user = await User.findById(id)
+			const token = req.headers.authorization.split(' ')[1]
+			const decodeIdData = jwt.verify(token, process.env.SECRET_JWT)
+			const id = decodeIdData.id
+			const user = await User.findById(id)
 
-			// const { title, description, amountExercise, gender, trainingMode, level } = req.body
-			// const posterPath = req.files[0].fieldname === 'path' ? req.files[0].path : req.files[1].path
-			// const videoPath = req.files[1].fieldname === 'video' ? req.files[1].path : req.files[0].path
-			// const date = getDateNow()
-			// const from = user.userName
+			const { title, description, amountExercise, gender, trainingMode, level } = req.body
+			const posterPath = req.files[0].fieldname === 'path' ? req.files[0].path : req.files[1].path
+			const videoPath = req.files[1].fieldname === 'video' ? req.files[1].path : req.files[0].path
+			const date = getDateNow()
+			const from = user.userName
 
 
 
-			// const training = new Training({
-			// 	title: title, amountExercise: amountExercise, level: level, path: process.env.SERVER_URL + '/' + posterPath, video: process.env.SERVER_URL + '/' + videoPath, trainingMode: trainingMode,
-			// 	date: date, from: from, description: description, comments: [],
-			// 	reviews: 0, type: '', gender: gender
-			// })
+			const training = new Training({
+				title: title, amountExercise: amountExercise, level: level, path: process.env.SERVER_URL + '/' + posterPath, video: process.env.SERVER_URL + '/' + videoPath, trainingMode: trainingMode,
+				date: date, from: from, description: description, comments: [],
+				reviews: 0, type: '', gender: gender
+			})
 
-			// training.save()
+			training.save()
 
 			res.json({ message: 'Success' })
 		} catch (e) {

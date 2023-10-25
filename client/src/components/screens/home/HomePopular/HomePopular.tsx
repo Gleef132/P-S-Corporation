@@ -5,8 +5,13 @@ import cl from './HomePopular.module.scss'
 
 const HomePopular: FC<IPopularTrainings> = (trainings) => {
 
+	console.log(trainings)
+
 	return (
-		<div className={cl.popular} id='popular'>
+		<div className={cl.popular} id='popular' onKeyDown={(e) => {
+			e.preventDefault();
+			e.stopPropagation();
+		}}>
 			<div className={'_container'}>
 				<div className={cl.popular__title}>Popular</div>
 				<div className={cl.popular__content}>
