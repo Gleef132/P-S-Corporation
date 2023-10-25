@@ -51,6 +51,7 @@ const MyTrainingList: FC<Props> = ({ sortBy }) => {
 	}, [page, isFetching])
 
 	useEffect(() => {
+		console.log('created2effect')
 		if (isTrainingCreated) {
 			// if (page === 1) {
 			// 	refetch()

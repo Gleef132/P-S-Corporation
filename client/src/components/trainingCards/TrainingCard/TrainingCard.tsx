@@ -21,6 +21,7 @@ const TrainingCard: FC<Props> = ({ training, primary, isMyTraining }) => {
 
 	const deleteTrainingHandle = (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault()
+		e.stopPropagation()
 		deleteTraining(training._id)
 			.unwrap()
 			.then(res => dispatch(refechMyTraining(true)))
@@ -36,6 +37,7 @@ const TrainingCard: FC<Props> = ({ training, primary, isMyTraining }) => {
 
 	const hiddenDeleteHandle = (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault()
+		e.stopPropagation()
 		if (deleteRef.current) {
 			(deleteRef.current as HTMLElement).classList.remove(cl.active)
 		}
