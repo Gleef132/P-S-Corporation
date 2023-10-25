@@ -14,7 +14,7 @@ const TraningPage: NextPage<Props> = (props) => {
 export default TraningPage
 
 export const getServerSideProps: GetServerSideProps<Props> = async ({ params }) => {
-	const response = await fetch(`${process.env.SERVER_API}/nutrition/${params?.id}`)
+	const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/nutrition/${params?.id}`)
 	const data = await response.json()
 
 	return {

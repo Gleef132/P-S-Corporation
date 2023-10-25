@@ -15,7 +15,7 @@ export default TrainingPage
 
 export const getServerSideProps: GetServerSideProps<Props> = async ({ params }) => {
 	try {
-		const response = await fetch(`${process.env.SERVER_API}/trainings/${params?.id}`)
+		const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/trainings/${params?.id}`)
 		const data = await response.json()
 
 		return {
