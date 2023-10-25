@@ -5,8 +5,6 @@ import cl from './HomePopular.module.scss'
 
 const HomePopular: FC<IPopularTrainings> = (trainings) => {
 
-	console.log(trainings)
-
 	return (
 		<div className={cl.popular} id='popular' onKeyDown={(e) => {
 			e.preventDefault();

@@ -24,7 +24,6 @@ const MyTrainingList: FC<Props> = ({ sortBy }) => {
 	const { data, refetch, isLoading, isFetching } = trainingApi.useFetchMyTrainingsQuery({ limit: limit, page: page, sortBy: sortBy, sortOption: '' })
 	const { refechMyTraining } = trainingSlice.actions
 	const { isTrainingCreated } = useAppSelector(state => state.trainingReducer)
-	const { isPopupActive } = useAppSelector(state => state.popupReducer)
 	const { myTrainingsNotFoundChange } = notFoundSlice.actions
 	const dispatch = useAppDispatch()
 
@@ -71,7 +70,6 @@ const MyTrainingList: FC<Props> = ({ sortBy }) => {
 
 	useEffect(() => {
 		if (data) {
-			console.log(data.data.length)
 			if (data.data.length === 0) {
 				dispatch(myTrainingsNotFoundChange(true))
 			} else {
