@@ -68,8 +68,8 @@ const MyTrainingList: FC<Props> = ({ sortBy }) => {
 					console.log('then')
 					fetchTrainings()
 				})
-			dispatch(refechMyTraining(false))
 		}
+		dispatch(refechMyTraining(false))
 	}, [isTrainingCreated])
 
 	useEffect(() => {
