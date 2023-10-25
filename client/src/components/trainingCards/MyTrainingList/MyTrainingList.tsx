@@ -59,13 +59,13 @@ const MyTrainingList: FC<Props> = ({ sortBy }) => {
 			// } else {
 			// 	setPage(1)
 			// }
+			setPage(1)
 			refetch()
 				.unwrap()
 				.then(res => {
 					console.log('then')
 					fetchTrainings()
 				})
-			if (page !== 1) setPage(1)
 			dispatch(refechMyTraining(false))
 		}
 	}, [isTrainingCreated])
@@ -85,7 +85,7 @@ const MyTrainingList: FC<Props> = ({ sortBy }) => {
 				dispatch(myTrainingsNotFoundChange(false))
 			}
 		}
-	}, [data])
+	}, [data, isTrainingCreated, isLoading, isFetching])
 
 	return (
 		<div className={isLoadingSort ? `${cl.cards} ${cl.active}` : cl.cards} >
