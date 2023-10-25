@@ -52,13 +52,17 @@ const MyTrainingList: FC<Props> = ({ sortBy }) => {
 
 	useEffect(() => {
 		if (isTrainingCreated) {
-			if (page === 1) {
-				refetch()
-					.unwrap()
-					.then(res => fetchTrainings())
-			} else {
-				setPage(1)
-			}
+			// if (page === 1) {
+			// 	refetch()
+			// 		.unwrap()
+			// 		.then(res => fetchTrainings())
+			// } else {
+			// 	setPage(1)
+			// }
+			refetch()
+				.unwrap()
+				.then(res => fetchTrainings())
+			if (page !== 1) setPage(1)
 			dispatch(refechMyTraining(false))
 		}
 	}, [isTrainingCreated])
