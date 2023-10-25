@@ -52,27 +52,16 @@ const MyTrainingList: FC<Props> = ({ sortBy }) => {
 	}, [page, isFetching])
 
 	useEffect(() => {
-		console.log('created2effect')
-		console.log(isTrainingCreated)
 		if (isTrainingCreated) {
-			// if (page === 1) {
-			// 	refetch()
-			// 		.unwrap()
-			// 		.then(res => fetchTrainings())
-			// } else {
-			// 	setPage(1)
-			// }
-			console.log('created2')
 			setPage(1)
 			refetch()
 				.unwrap()
 				.then(res => {
-					console.log('then')
 					fetchTrainings()
 				})
 		}
 		dispatch(refechMyTraining(false))
-	}, [isTrainingCreated, isPopupActive])
+	}, [isTrainingCreated])
 
 	useEffect(() => {
 		setIsLoadingSort(true)

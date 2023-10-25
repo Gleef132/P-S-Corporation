@@ -111,7 +111,7 @@ const Training: FC<ITraining> = (training) => {
 						</div>
 						<div className={cl.training__comments}>
 							{comments.map(item => {
-								return <Comment {...item} key={'' + item.date} />
+								return <Comment {...item} key={item._id} />
 							})}
 							<div ref={lastComment}></div>
 						</div>

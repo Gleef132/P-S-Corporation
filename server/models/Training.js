@@ -8,7 +8,7 @@ const CommentSchema = new Schema({
 })
 
 const TrainingSchema = new Schema({
-	title: { type: String, required: true },
+	title: { type: String, unique: true, required: true },
 	level: { type: String, required: true },
 	amountExercise: { type: String, required: true },
 	from: { type: String, required: true },

@@ -10,6 +10,7 @@ import CreateTrainingCheckbox from '../create-training-checkbox/CreateTrainingCh
 import { trainingSlice } from '@/store/reducers/TrainingSlice'
 import { useAppDispatch } from '@/hooks/redux'
 import { popupSlice } from '@/store/reducers/popup/PopupSlice'
+import { notFoundSlice } from '@/store/reducers/NotFoundSlice'
 
 interface Props {
 	showHelper: (e: React.MouseEvent<HTMLDivElement>) => void;
@@ -38,6 +39,7 @@ const CreateTrainingForm: FC<Props> = ({ hiddenHelper, showHelper, setHelperText
 	const [createTraining] = trainingApi.useCreateTrainingMutation()
 	const { refechMyTraining } = trainingSlice.actions
 	const { popupSwitch } = popupSlice.actions
+	const { myTrainingsNotFoundChange } = notFoundSlice.actions
 
 
 	const fileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -74,9 +76,9 @@ const CreateTrainingForm: FC<Props> = ({ hiddenHelper, showHelper, setHelperText
 		createTraining(data)
 			.unwrap()
 			.then(res => {
+				dispatch(myTrainingsNotFoundChange(false))
 				dispatch(refechMyTraining(true))
 				dispatch(popupSwitch({ isPopupActive: false, popupChildren: '' }))
-				console.log('created')
 			})
 	}
 

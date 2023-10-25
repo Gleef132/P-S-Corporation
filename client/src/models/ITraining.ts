@@ -9,12 +9,11 @@ export interface ITraining {
 	reviews: number,
 	from: string,
 	traningMode: string,
-	// comments: IComment[]
 }
 export interface IComment {
 	userName: string,
 	date: string,
 	comment: string,
 	path: string,
-	id?: string
+	_id?: string
 }
