@@ -228,8 +228,7 @@ class TrainingController {
 
 	async createComment(req, res) {
 		try {
-			const { userName, comment, path, id } = req.body
-			const _id = id
+			const { userName, comment, path, _id } = req.body
 			const training = await Training.findById(_id)
 			const date = getDateNow()
 

@@ -54,7 +54,7 @@ const Training: FC<ITraining> = (training) => {
 			date: '',
 			userName: userName,
 			path: profileImg,
-			id: training._id
+			_id: training._id
 		}
 		await saveComment(comment)
 			.unwrap()
