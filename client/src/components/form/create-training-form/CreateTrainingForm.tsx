@@ -75,6 +75,7 @@ const CreateTrainingForm: FC<Props> = ({ hiddenHelper, showHelper, setHelperText
 			.unwrap()
 			.then(res => {
 				dispatch(refechMyTraining(true))
+				dispatch(popupSwitch({ isPopupActive: false, popupChildren: '' }))
 				console.log('created')
 			})
 	}
