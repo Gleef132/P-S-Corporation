@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const mealApi = createApi({
 	reducerPath: 'mealApi',
-	baseQuery: fetchBaseQuery({ baseUrl: `${process.env.SERVER_API}` }),
+	baseQuery: fetchBaseQuery({ baseUrl: `${process.env.NEXT_PUBLIC_SERVER_API}` }),
 	endpoints: build => ({
 		fetchNutritions: build.query<IMeals, string>({
 			query: () => ({
