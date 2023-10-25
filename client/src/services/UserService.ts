@@ -6,7 +6,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const authApi = createApi({
 	reducerPath: 'authApi',
-	baseQuery: fetchBaseQuery({ baseUrl: `https://p-s-corporation-server.vercel.app/api` }),
+	baseQuery: fetchBaseQuery({ baseUrl: `${process.env.SERVER_API}` }),
 	endpoints: build => ({
 		userRegistration: build.mutation<IResponse, ISignUp>({
 			query: (user) => ({

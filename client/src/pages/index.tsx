@@ -16,7 +16,8 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 	// const { data } = traningApi.useFetchPopularTraningsQuery('')
 	try {
 		// const response = await fetch(`https://p-s-corporation-server.vercel.app/api/trainings-popular`)
-		const response = await fetch(`http://localhost:5000/api/trainings-popular`)
+		// const response = await fetch(`http://localhost:5000/api/trainings-popular`)
+		const response = await fetch(`${process.env.SERVER_API}/trainings-popular`)
 		const data = await response.json()
 		return {
 			props: {

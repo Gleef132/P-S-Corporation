@@ -24,7 +24,7 @@ interface IComments {
 
 export const trainingApi = createApi({
 	reducerPath: 'trainingApi',
-	baseQuery: fetchBaseQuery({ baseUrl: `https://p-s-corporation-server.vercel.app/api` }),
+	baseQuery: fetchBaseQuery({ baseUrl: `${process.env.SERVER_API}` }),
 	extractRehydrationInfo(action) {
 		if (action.type === HYDRATE) {
 			return action.payload.api
