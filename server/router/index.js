@@ -9,6 +9,8 @@ const searchController = require('../controllers/search-controller');
 
 router.post('/registration', userController.registration)
 router.post('/login', userController.login)
+router.post('/user-check', userController.checkUserExist)
+router.post('/username-check', userController.checkUserNameExist)
 router.post('/activate', userController.activate)
 router.get('/users', userController.getUsers)
 router.get('/user', userController.getUser)

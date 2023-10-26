@@ -6,7 +6,9 @@ import cl from './MealChoice.module.scss';
 const MealChoice: FC = () => {
 	return (
 		<div className={cl.meal__choice}>
-			<Image className={cl.meal__bg} src={'/meal-bg.jpg'} priority alt='' fill />
+			<div className={cl.meal__bg}>
+				<Image src={'/meal-bg.jpg'} priority alt='' fill />
+			</div>
 			<div className={cl.meal__gender} onClick={(e) => e.stopPropagation()}>
 				<h1 className={cl.meal__gender__title}>Nutrition</h1>
 				<div className={cl.meal__gender__content}>

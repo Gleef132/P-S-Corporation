@@ -11,6 +11,7 @@ import { trainingSlice } from '@/store/reducers/TrainingSlice'
 import { useAppDispatch } from '@/hooks/redux'
 import { popupSlice } from '@/store/reducers/popup/PopupSlice'
 import { notFoundSlice } from '@/store/reducers/NotFoundSlice'
+import Loader from '@/components/ui/loader/Loader'
 
 interface Props {
 	showHelper: (e: React.MouseEvent<HTMLDivElement>) => void;
@@ -33,6 +34,10 @@ const CreateTrainingForm: FC<Props> = ({ hiddenHelper, showHelper, setHelperText
 	const [gender, setGender] = useState<string>('Both')
 	const [mode, setMode] = useState<string>('')
 	const [amountExercises, setAmountExercises] = useState<string>('')
+	const [isLoading, setIsLoading] = useState<boolean>(false)
+	const [isError, setIsError] = useState<boolean>(false)
+	const [errorText, setErrorText] = useState<boolean>(false)
+
 
 
 	const dispatch = useAppDispatch()
@@ -52,12 +57,13 @@ const CreateTrainingForm: FC<Props> = ({ hiddenHelper, showHelper, setHelperText
 				setVideoFileName(file.name as string)
 				setLoaderActive(false)
 				setActiveContent(2)
-			}, 2500);
+			}, 3000);
 		}
 	}
 
 	const createTrainingHandle = (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault()
+		setIsLoading(true)
 
 		const data = new FormData()
 		data.append('amountExercise', amountExercises)
@@ -79,6 +85,11 @@ const CreateTrainingForm: FC<Props> = ({ hiddenHelper, showHelper, setHelperText
 				dispatch(myTrainingsNotFoundChange(false))
 				dispatch(refechMyTraining(true))
 				dispatch(popupSwitch({ isPopupActive: false, popupChildren: '' }))
+				setIsLoading(false)
+			})
+			.catch(e => {
+				setIsError(true)
+				setErrorText(e.data.message)
 			})
 	}
 
@@ -192,8 +203,8 @@ const CreateTrainingForm: FC<Props> = ({ hiddenHelper, showHelper, setHelperText
 							<div className={cl.form__item__text}>
 								Write how many exercises are in your workout so that users can find suitable workouts.
 							</div>
-							<input type="number" placeholder='Enter the number' className={cl.form__item__input} onChange={(e) =>
-								setAmountExercises(e.target.value)}
+							<input type="text" placeholder='Enter the number' className={cl.form__item__input} onChange={(e) =>
+								setAmountExercises(e.target.value.replace(/[^0-9,\s]/g, "").trim())}
 								value={amountExercises}
 							/>
 						</div>
@@ -204,8 +215,8 @@ const CreateTrainingForm: FC<Props> = ({ hiddenHelper, showHelper, setHelperText
 							<div className={cl.form__item__text}>
 								Write how many times a week users should exercise. This will help them understand if your workouts are suitable.
 							</div>
-							<input type="number" placeholder='Enter the number' className={cl.form__item__input} value={mode}
-								onChange={(e) => setMode(e.target.value)}
+							<input type="text" placeholder='Enter the number' className={cl.form__item__input} value={mode}
+								onChange={(e) => setMode(e.target.value.replace(/[^0-9,\s]/g, "").trim())}
 							/>
 						</div>
 					</div>
@@ -223,10 +234,22 @@ const CreateTrainingForm: FC<Props> = ({ hiddenHelper, showHelper, setHelperText
 		}
 		<div className={cl.form__footer}>
 			By submitting a video, you agree to the Terms of Service and Community Guidelines P&S Corporation.
-			{activeContent === 2 ? <button onClick={createTrainingHandle} className={cl.form__btn} disabled={videoFileName && level && videoPosterPath && amountExercises && mode ? false : true} >Create</button>
+			{activeContent === 2 ? <button onClick={createTrainingHandle} className={cl.form__btn} disabled={videoFileName && videoPosterPath && level && amountExercises && mode ? false : true} >Create</button>
 				: null
 			}
 		</div>
+		{isLoading ?
+			<div className={cl.loader__wrapper}>
+				<div className={cl.loader}>
+					{isError ?
+						<>{errorText}</>
+						:
+						<>Creating
+							<Loader /></>
+					}
+				</div>
+			</div> : null
+		}
 	</form>
 }
 

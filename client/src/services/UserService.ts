@@ -4,6 +4,11 @@ import { ISignUp } from '@/models/ISignUp'
 import { IUser, IUserActivate } from '@/models/IUser'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
+interface IUserCheck {
+	message: string;
+	isVerified: boolean;
+}
+
 export const authApi = createApi({
 	reducerPath: 'authApi',
 	baseQuery: fetchBaseQuery({ baseUrl: `${process.env.NEXT_PUBLIC_SERVER_API}` }),
@@ -20,6 +25,24 @@ export const authApi = createApi({
 				url: '/login',
 				method: 'POST',
 				body: user
+			})
+		}),
+		userCheckExist: build.mutation<IUserCheck, string>({
+			query: (login) => ({
+				url: '/user-check',
+				method: 'POST',
+				body: {
+					login: login
+				}
+			})
+		}),
+		userNameCheckExist: build.mutation<IUserCheck, string>({
+			query: (userName) => ({
+				url: '/username-check',
+				method: 'POST',
+				body: {
+					userName: userName
+				}
 			})
 		}),
 		userActivate: build.mutation<IResponse, IUserActivate>({
@@ -42,6 +65,7 @@ export const authApi = createApi({
 		getUser: build.query<IUser, string>({
 			query: () => ({
 				url: '/user',
+				method: 'GET',
 				headers: {
 					authorization: `Bearer ${localStorage.getItem('token')}`,
 					'Content-Type': 'multipart/form-data',

@@ -66,6 +66,11 @@
 		align-items: center;
 	}
 
+	&__loader {
+		position: absolute;
+		@include adaptiv-value('top', 15, 10, 0);
+	}
+
 	&__error {
 		position: absolute;
 		color: $textErrorColor;

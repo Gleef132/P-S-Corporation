@@ -13,9 +13,10 @@ interface ISignInProps {
   changeFormTitle: (value: string) => void;
   changeFormType: (value: string) => void;
   changeValidateText: (value: string) => void;
+  changeLoading: (state: boolean) => void;
 }
 
-const SignIn: FC<ISignInProps> = ({ changeValidateText, changeFormTitle, changeFormType }) => {
+const SignIn: FC<ISignInProps> = ({ changeValidateText, changeFormTitle, changeFormType, changeLoading }) => {
 
   const dispatch = useAppDispatch()
   const { toggleActiveMobileMenu, popupSwitch } = popupSlice.actions
@@ -23,19 +24,15 @@ const SignIn: FC<ISignInProps> = ({ changeValidateText, changeFormTitle, changeF
   const { userEnter, userLoginStore } = authSlice.actions
   const [userLogin] = authApi.useUserLoginMutation()
 
-  const [signInLogin, setSignInLogin] = useState<string>('')
-  const [signInPassword, setSignInPassword] = useState<string>('')
+  const [login, setLogin] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
   const [isUserEnterError, setIsUserEnterError] = useState<boolean>(false)
-  const [signInPasswordVisible, setSignInPasswordVisible] = useState<boolean>(false)
-
-  const refreshData = () => {
-    setSignInLogin('')
-    setSignInPassword('')
-  }
+  const [passwordVisible, setPasswordVisible] = useState<boolean>(false)
 
   const loginHandle = async () => {
-    if (signInLogin && signInPassword && !isUserEnterError) {
-      const user = { login: signInLogin, password: signInPassword }
+    if (login && password && !isUserEnterError) {
+      changeLoading(true)
+      const user = { login: login, password: password }
       await userLogin(user)
         .unwrap()
         .then(res => {
@@ -44,10 +41,11 @@ const SignIn: FC<ISignInProps> = ({ changeValidateText, changeFormTitle, changeF
           dispatch(toggleAlertActive({ message: 'You have successfully logged in', isActive: true, textColor: '#35c41f' }))
           dispatch(userEnter(res.token))
           dispatch(userLoginStore(user))
-          refreshData()
+          changeLoading(false)
         })
         .catch((e) => {
           setIsUserEnterError(true)
+          changeLoading(false)
           changeValidateText(e.data.message)
         })
     } else {
@@ -59,25 +57,26 @@ const SignIn: FC<ISignInProps> = ({ changeValidateText, changeFormTitle, changeF
     changeFormType('signUp')
     changeFormTitle('Registration')
     changeValidateText('')
+    changeLoading(false)
   }
 
   return (
     <>
       <div className={cl.form__inputs}>
-        <input type={'text'} className={cl.form__input} placeholder={'Login'} value={signInLogin} onChange={(e) => {
+        <input type={'text'} className={cl.form__input} placeholder={'Login'} value={login} onChange={(e) => {
           setIsUserEnterError(false)
-          setSignInLogin(e.target.value.trim())
+          setLogin(e.target.value.trim())
         }}
           autoFocus
         />
         <div className={cl.form__item}>
-          <input type={signInPasswordVisible ? 'text' : 'password'} className={cl.form__input} placeholder={'Password'}
-            value={signInPassword} onChange={(e) => {
+          <input type={passwordVisible ? 'text' : 'password'} className={cl.form__input} placeholder={'Password'}
+            value={password} onChange={(e) => {
               setIsUserEnterError(false)
-              setSignInPassword(e.target.value.trim())
+              setPassword(e.target.value.trim())
             }} />
-          <div className={cl.form__icon} onClick={() => setSignInPasswordVisible(!signInPasswordVisible)}>
-            {!signInPasswordVisible ? <EyeVisible /> : <EyeHidden />}
+          <div className={cl.form__icon} onClick={() => setPasswordVisible(!passwordVisible)}>
+            {!passwordVisible ? <EyeVisible /> : <EyeHidden />}
           </div>
         </div>
       </div>

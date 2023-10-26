@@ -22,7 +22,8 @@ const Meal: FC<Props> = ({ meals }) => {
       {query.id === "male" ? (
         <Image
           className={cl.meal__bg}
-          priority
+          placeholder="blur"
+          blurDataURL={'/meal-man-bg.png'}
           src={"/meal-man-bg.png"}
           fill
           alt=""
@@ -31,7 +32,8 @@ const Meal: FC<Props> = ({ meals }) => {
       {query.id === "female" ? (
         <Image
           className={cl.meal__bg}
-          priority
+          placeholder="blur"
+          blurDataURL={'/meal-woman-bg.png'}
           src={"/meal-woman-bg.png"}
           fill
           alt=""

@@ -3,7 +3,7 @@
 .training {
 	height: 100%;
 	min-height: 100vh;
-	padding: 100px 0 0 0;
+	padding: 90px 0 0 0;
 
 	&__title {
 		@include adaptiv-value('font-size', 28, 18, 0);
@@ -184,7 +184,7 @@
 }
 
 @media (max-width: 768px) {
-	.traning {
+	.training {
 		&__top {
 			flex-direction: column-reverse;
 			gap: 10px;
@@ -197,7 +197,7 @@
 }
 
 @media(max-width: 500px) {
-	.traning {
+	.training {
 		&__video__container {
 			padding: 0;
 		}

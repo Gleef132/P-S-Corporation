@@ -16,15 +16,6 @@
 		object-fit: cover;
 	}
 
-	&__choice {
-		height: 100vh;
-		width: 100%;
-		position: absolute;
-		z-index: 1;
-	}
-
-	// &__container {}
-
 	&__content {
 		display: flex;
 		flex-direction: column;

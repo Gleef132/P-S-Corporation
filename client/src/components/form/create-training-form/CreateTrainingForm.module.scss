@@ -244,7 +244,7 @@
 	&__loader {
 		@include adaptiv-value('width', 130, 100, 0);
 		@include adaptiv-value('height', 130, 100, 0);
-		background: #000;
+		background: rgb(31, 31, 31);
 		border-radius: 50%;
 		display: flex;
 		justify-content: center;
@@ -252,6 +252,18 @@
 		position: relative;
 		overflow: hidden;
 		margin-bottom: 10px;
+
+		&::before {
+			content: '';
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			transform: translate(-50%, -50%) scale(0);
+			background: #000;
+			border-radius: 50%;
+			left: 50%;
+			top: 50%;
+		}
 
 		&__rain:nth-child(1) {
 			@for $i from 1 through 6 {
@@ -312,7 +324,7 @@
 			position: absolute;
 			width: 5px;
 			height: 50px;
-			background: linear-gradient(to bottom, #ccc, #000);
+			background: rgb(50, 50, 50);
 		}
 
 		&.active {
@@ -320,7 +332,14 @@
 				animation: animate .5s linear infinite;
 			}
 
-			.training__form__loader__arrow {
+			&::before {
+				transform-origin: center;
+				transform: translate(-50%, -50%) scale(1);
+				transition: all .3s ease 2.5s;
+				z-index: 100;
+			}
+
+			.form__loader__arrow {
 				transition: all 0.3s ease 0s;
 				margin-top: 0;
 				animation: arrowAnimate 1s linear 1.5s 1 forwards;
@@ -446,15 +465,39 @@
 	color: $trainingFormInputTextColor;
 }
 
+.loader {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	@include adaptiv-value('font-size', 24, 18, 0);
+
+	div {
+		margin-top: 5px;
+	}
+
+	&__wrapper {
+		position: absolute;
+		display: flex;
+		gap: 10px;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 100%;
+		background: rgba($color: #000000, $alpha: .4);
+		backdrop-filter: blur(1px);
+		-webkit-backdrop-filter: blur(1px);
+	}
+}
+
 @keyframes animate {
 	from {
 		opacity: 1;
-		transform: translateY(100px) rotate(5deg);
+		transform: translateY(100px);
 	}
 
 	to {
 		opacity: 1;
-		transform: translateY(-130px) rotate(5deg);
+		transform: translateY(-130px);
 	}
 }
 

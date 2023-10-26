@@ -30,7 +30,7 @@
 		padding: 3px 0;
 		align-items: center;
 
-		&.active{
+		&.active {
 			background: $searchListBackgroundHover;
 		}
 
@@ -163,6 +163,7 @@
 				.search__mobile__content {
 					opacity: 1;
 					z-index: 1;
+					transform: scale(1);
 				}
 
 				.search__mobile__input {
@@ -188,6 +189,7 @@
 			width: 100%;
 			flex-direction: column;
 			opacity: 0;
+			transform: scale(0);
 		}
 
 		&__mobile__input {

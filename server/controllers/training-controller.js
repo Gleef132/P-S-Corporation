@@ -222,7 +222,7 @@ class TrainingController {
 			res.json({ message: 'Success' })
 		} catch (e) {
 			console.log(e)
-			res.status(400).json({ message: 'Error' })
+			res.status(400).json({ message: 'Error try again' })
 		}
 	}
 

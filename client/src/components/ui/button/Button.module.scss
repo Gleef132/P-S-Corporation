@@ -31,6 +31,15 @@
 			}
 		}
 
+		&:focus {
+			transition: background 0s linear .3s;
+			background: $auqaColorPrimary;
+
+			&::before {
+				transform: scaleX(1);
+			}
+		}
+
 		&:disabled {
 			border-color: $auqaColorSecondary;
 			color: $textDarkColor;

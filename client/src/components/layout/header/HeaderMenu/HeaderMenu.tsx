@@ -109,7 +109,6 @@ const HeaderMenu: FC<HeaderMenuProps> = ({ userAvatar }) => {
 					<div className={cl.menu__profile__img}>
 						<img src={userAvatar} onLoad={(e) => {
 							e.currentTarget.style.zIndex = '1';
-							(e.currentTarget.parentElement as HTMLElement).style.background = 'none';
 							(e.currentTarget.parentElement as HTMLElement).style.zIndex = '2'
 						}}
 						/>

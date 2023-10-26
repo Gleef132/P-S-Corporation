@@ -18,6 +18,10 @@
     &::placeholder {
       color: $textDarkColor;
     }
+
+    &:focus {
+      border-color: #14CAD6;
+    }
   }
 
   &__item {
@@ -63,6 +67,22 @@
     @include adaptiv-value('font-size', 18, 14, 0);
     white-space: nowrap;
     width: max-content;
+  }
+}
+
+.icon {
+
+  &__green {
+    svg {
+      fill: $textSuccessColor;
+    }
+  }
+
+  &__red {
+
+    svg {
+      fill: rgb(211, 21, 5);
+    }
   }
 }
 

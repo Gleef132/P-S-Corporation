@@ -54,6 +54,36 @@ class UserController {
 			res.status(400).json({ message: 'Login error' })
 		}
 	}
+	async checkUserExist(req, res) {
+		try {
+			const { login } = req.body
+			const user = await User.findOne({ login })
+
+			if (user) {
+				return res.json({ message: 'This user already exists', isVerified: false })
+			}
+
+			return res.json({ message: 'This login is free', isVerified: true })
+		} catch (e) {
+			console.log(e)
+			res.status(400).json({ message: 'Code send error' })
+		}
+	}
+	async checkUserNameExist(req, res) {
+		try {
+			const { userName } = req.body
+			const user = await User.findOne({ userName })
+
+			if (user) {
+				return res.json({ message: 'This user already exists', isVerified: false })
+			}
+
+			return res.json({ message: 'This login is free', isVerified: true })
+		} catch (e) {
+			console.log(e)
+			res.status(400).json({ message: 'Code send error' })
+		}
+	}
 	async activate(req, res) {
 		try {
 			const { email, code } = req.body

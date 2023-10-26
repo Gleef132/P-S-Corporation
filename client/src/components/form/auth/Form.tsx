@@ -4,18 +4,20 @@ import { useAppDispatch } from '@/hooks/redux'
 import SignIn from './sign-in/SignIn'
 import SignUp from './sing-up/SignUp'
 import { popupSlice } from '@/store/reducers/popup/PopupSlice'
+import Loader from '@/components/ui/loader/Loader'
 
 const Form: FC = () => {
 
 	const dispatch = useAppDispatch()
 	const { popupSwitch } = popupSlice.actions
 	const [validateText, setValidateText] = useState<string>('')
+	const [isLoading, setIsLoading] = useState<boolean>(false)
 	const [formType, setFormType] = useState<string>('signIn')
 	const [title, setTitle] = useState<string>('Login')
 
 	const formContent: { [key: string]: React.ReactNode } = {
-		signIn: <SignIn changeFormTitle={setTitle} changeFormType={setFormType} changeValidateText={setValidateText} />,
-		signUp: <SignUp changeFormTitle={setTitle} changeFormType={setFormType} changeValidateText={setValidateText} />
+		signIn: <SignIn changeFormTitle={setTitle} changeLoading={setIsLoading} changeFormType={setFormType} changeValidateText={setValidateText} />,
+		signUp: <SignUp changeFormTitle={setTitle} changeLoading={setIsLoading} changeFormType={setFormType} changeValidateText={setValidateText} />
 	}
 
 	return (
@@ -24,7 +26,13 @@ const Form: FC = () => {
 			</div>
 			<h1 className={cl.form__title}>{title}</h1>
 			<div className={cl.form__content}>
-				<div className={cl.form__error}>{validateText}</div>
+				{isLoading ?
+					<div className={cl.form__loader}>
+						<Loader />
+					</div>
+					:
+					<div className={cl.form__error}>{validateText}</div>
+				}
 				{formContent[formType]}
 			</div>
 		</form>
