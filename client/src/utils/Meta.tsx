@@ -9,7 +9,7 @@ interface IMeta {
 const Meta: FC<IMeta> = ({ pageName }) => {
 
   const { title, description, keywords, linkImage: image, linkImageType: type } = getMetaData(pageName)
-  const linkImage = image ? image : `${process.env.NEXT_PUBLIC_SERVER_API}/static/logo.svg`
+  const linkImage = image ? image : `${process.env.NEXT_PUBLIC_SERVER_STATIC}/logo.svg`
   const linkImageType = type ? type : `image/svg`
 
   return (
