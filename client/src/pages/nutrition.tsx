@@ -1,5 +1,5 @@
 import MealChoice from '@/components/screens/meal-choice/MealChoice'
-import Meta from '@/utils/Meta'
+import Meta from '../utils/Meta'
 import { NextPage } from 'next'
 
 const mealPage: NextPage = () => {

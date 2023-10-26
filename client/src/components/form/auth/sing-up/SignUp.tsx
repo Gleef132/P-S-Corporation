@@ -7,7 +7,7 @@ import { authApi } from '@/services/UserService';
 import { authSlice } from '@/store/reducers/auth/AuthSlice';
 import useCountdown from '@/hooks/useCountdown';
 import { useAppDispatch } from '@/hooks/redux';
-import { generateCode } from '@/utils/GenerateCode';
+import { generateCode } from '../../../../utils/GenerateCode';
 import Xmark from 'public/xmark.svg'
 import Check from 'public/check.svg'
 import EyeVisible from 'public/eye.svg'

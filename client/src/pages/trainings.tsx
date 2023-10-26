@@ -1,5 +1,5 @@
 import Trainings from '@/components/screens/tranings/Trainings';
-import Meta from '@/utils/Meta';
+import Meta from '../utils/Meta';
 import { NextPage } from 'next'
 
 const trainingsPage: NextPage = () => {

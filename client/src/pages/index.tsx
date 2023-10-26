@@ -1,6 +1,6 @@
 import Home from "@/components/screens/home/Home";
 import { IPopularTrainings } from "@/models/ITrainings";
-import Meta from "@/utils/Meta";
+import Meta from "../utils/Meta";
 import { GetStaticProps, NextPage } from 'next'
 
 interface Props {

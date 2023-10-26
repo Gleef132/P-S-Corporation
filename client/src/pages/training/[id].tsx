@@ -1,6 +1,6 @@
 import Training from '@/components/screens/training/Training'
 import { ITraining } from '@/models/ITraining'
-import Meta from '@/utils/Meta'
+import Meta from '../../utils/Meta'
 import { GetServerSideProps, NextPage } from 'next'
 
 interface Props {

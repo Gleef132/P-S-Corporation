@@ -1,7 +1,7 @@
 import { GetServerSideProps, NextPage } from 'next'
 import { IMeal } from '@/models/IMeal'
 import Meal from '@/components/screens/meal/Meal'
-import Meta from '@/utils/Meta'
+import Meta from '../../utils/Meta'
 
 interface Props {
 	meals: IMeal[]

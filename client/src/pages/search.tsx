@@ -1,5 +1,5 @@
 import Search from '@/components/screens/search/Search'
-import Meta from '@/utils/Meta'
+import Meta from '../utils/Meta'
 import { NextPage } from 'next'
 
 const searchPage: NextPage = () => {

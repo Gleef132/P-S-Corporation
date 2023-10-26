@@ -1,5 +1,5 @@
 import Profile from '@/components/screens/profile/Profile'
-import Meta from '@/utils/Meta'
+import Meta from '../utils/Meta'
 import { NextPage } from 'next'
 
 // import dynamic from 'next/dynamic'
