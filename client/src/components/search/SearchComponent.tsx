@@ -167,7 +167,10 @@ const SearchComponent: FC = () => {
 									id='headerSearch'
 									value={value}
 									onKeyUp={searchKeyHandle}
-									onChange={(e) => setValue(e.target.value)}
+									onChange={(e) => {
+										setValue(e.target.value)
+										setCopyValue(e.target.value)
+									}}
 									autoComplete='off'
 								/>
 								<div className={cl.search__mobile__input__icon} onClick={(e) => searchClickHandle(e, false)}>
