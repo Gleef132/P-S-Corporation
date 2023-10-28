@@ -1,32 +1,31 @@
-import { useAppDispatch, useAppSelector } from '@/hooks/redux'
+import { useAppDispatch } from '@/hooks/redux'
 import { authApi } from '@/services/UserService'
 import { authSlice } from '@/store/reducers/auth/AuthSlice'
 import Image from 'next/image'
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useState } from 'react'
 import cl from './Profile.module.scss'
+import Loader from '@/components/ui/loader/Loader'
 
 const Profile: FC = () => {
 
 	const [file, setFile] = useState<File>()
-	const [login, setLogin] = useState('')
-	const [password, setPassword] = useState('')
-	const [email, setEmail] = useState('')
-	const [firstName, setFirstName] = useState('')
+	const [login, setLogin] = useState<string>('')
+	const [password, setPassword] = useState<string>('')
+	const [email, setEmail] = useState<string>('')
+	const [firstName, setFirstName] = useState<string>('')
+	const [isLoading, setIsLoading] = useState<boolean>(false)
+	const [isError, setIsError] = useState<boolean>(false)
+	const [error, setError] = useState<string>('')
 
-	const { isAuth, isRefetch } = useAppSelector(state => state.authReducer)
-	const { data: user, refetch } = authApi.useGetUserQuery('')
-	const { userChangeProfileData } = authSlice.actions
+	const { data: user } = authApi.useGetUserQuery('')
+	// const { userChangeProfileData } = authSlice.actions
 	const [userChangeData] = authApi.useUserChangeDataMutation()
-	const dispatch = useAppDispatch()
-
-	useEffect(() => {
-		if (isAuth !== '') {
-			refetch()
-		}
-	}, [isAuth])
+	// const dispatch = useAppDispatch()
 
 	const saveHandle = async (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault()
+		if (isError) return
+		setIsLoading(true)
 		const data = new FormData()
 		data.append('avatar', file as Blob)
 		data.append('login', login)
@@ -34,7 +33,17 @@ const Profile: FC = () => {
 		data.append('email', email)
 		data.append('firstName', firstName)
 		await userChangeData(data)
-		dispatch(userChangeProfileData(isRefetch))
+			.unwrap()
+			.then(res => {
+				setIsLoading(false)
+				setIsError(false)
+				// dispatch(userChangeProfileData(true))
+			})
+			.catch(e => {
+				setIsLoading(false)
+				setError('An error occurred while changing data')
+				setIsError(true)
+			})
 	}
 
 	const fileChangeHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -82,6 +91,15 @@ const Profile: FC = () => {
 					<input type="text" className={cl.profile__input} placeholder={user?.userName} value={firstName} onChange={(e) => setFirstName(e.target.value)} />
 				</div>
 				<button className={cl.profile__btn} onClick={saveHandle}>Save</button>
+				{isLoading || isError ?
+					<div className={cl.profile__loader}>
+						{isLoading ?
+							<Loader /> :
+							<div className={cl.profile__loader__error}>{error}
+							</div>
+						}
+					</div> : null
+				}
 			</form>
 		</div>
 	</section>

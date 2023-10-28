@@ -57,7 +57,7 @@ const TrainingList: FC<Props> = ({ sortBy, sortOption }) => {
 				if (index === 11 && !firstDataLoaded) setFirstDataLoaded(true)
 				return <TrainingCard isMyTraining={false} primary={true} training={item} key={item._id} />
 			})}
-			{isLoading && <Loader />}
+			{isLoading && <div className={cl.loader}><Loader /></div>}
 			<div style={{ position: 'absolute', bottom: '-90px', display: firstDataLoaded ? 'block' : 'none' }} ref={lastElement}></div>
 		</div>
 	)

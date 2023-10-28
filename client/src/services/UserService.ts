@@ -12,6 +12,7 @@ interface IUserCheck {
 export const authApi = createApi({
 	reducerPath: 'authApi',
 	baseQuery: fetchBaseQuery({ baseUrl: `${process.env.NEXT_PUBLIC_SERVER_API}` }),
+	tagTypes: ['User'],
 	endpoints: build => ({
 		userRegistration: build.mutation<IResponse, ISignUp>({
 			query: (user) => ({
@@ -60,7 +61,8 @@ export const authApi = createApi({
 				headers: {
 					authorization: `Bearer ${localStorage.getItem('token')}`
 				}
-			})
+			}),
+			invalidatesTags: ['User']
 		}),
 		getUser: build.query<IUser, string>({
 			query: () => ({
@@ -70,7 +72,8 @@ export const authApi = createApi({
 					authorization: `Bearer ${localStorage.getItem('token')}`,
 					'Content-Type': 'multipart/form-data',
 				}
-			})
+			}),
+			providesTags: result => ['User']
 		})
 	})
 })

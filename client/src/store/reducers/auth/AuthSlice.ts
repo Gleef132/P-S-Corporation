@@ -55,7 +55,7 @@ export const authSlice = createSlice({
 			localStorage.setItem('login', action.payload.login)
 		},
 		userChangeProfileData(state, action: PayloadAction<boolean>) {
-			state.isRefetch = !action.payload
+			state.isRefetch = action.payload
 		},
 		userDataSave(state, action: PayloadAction<string[]>) {
 			state.profileImg = action.payload[0]

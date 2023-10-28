@@ -30,8 +30,6 @@ const HeaderMenu: FC<HeaderMenuProps> = ({ userAvatar }) => {
 		const btn = document.querySelector('#navBtn')
 
 		const markWindowResize = () => {
-			// let leftElement = (btn as HTMLButtonElement)?.offsetLeft + 15;
-			// let widthElement = (btn as HTMLButtonElement)?.offsetWidth - 30;
 			let leftElement = (btn as HTMLButtonElement)?.offsetLeft + 15;
 			let widthElement = (btn as HTMLButtonElement)?.offsetWidth - 30;
 
@@ -62,31 +60,34 @@ const HeaderMenu: FC<HeaderMenuProps> = ({ userAvatar }) => {
 	const markIndicator = (e: React.MouseEvent<HTMLAnchorElement>, type: string) => {
 		let leftElement = e.currentTarget.offsetLeft + 15;
 		let widthElement = e.currentTarget.offsetWidth - 30;
-		if (marker.mark.style) {
+		const markerStyle = marker.mark.style
+		if (markerStyle) {
 			switch (type) {
 				case 'click':
 					if (e.currentTarget.innerHTML === 'Sign In') {
 						dispatch(popupSwitch({ isPopupActive: true, popupChildren: <Form /> }))
-						marker.mark.style.left = marker.left + 'px';
-						marker.mark.style.width = marker.width + 'px';
+						// markerStyle.left = marker.left + 'px';
+						// markerStyle.width = marker.width + 'px';
+						markerStyle.left = '0px';
+						markerStyle.width = '0px';
 					} else {
 						setMarker({ ...marker, left: leftElement, width: widthElement });
-						marker.mark.style.left = leftElement + 'px';
-						marker.mark.style.width = widthElement + 'px';
+						markerStyle.left = leftElement + 'px';
+						markerStyle.width = widthElement + 'px';
 					}
 					dispatch(toggleActiveMobileMenu(false))
 					break;
 				case 'leave':
-					if (pathname === '/profile' || pathname === '/my-trainings') {
-						marker.mark.style.left = '0px';
-						marker.mark.style.width = '0px';
+					if (pathname === '/profile' || pathname === '/my-trainings' || pathname === '/search') {
+						markerStyle.left = '0px';
+						markerStyle.width = '0px';
 					}
-					marker.mark.style.left = marker.left + 'px';
-					marker.mark.style.width = marker.width + 'px';
+					markerStyle.left = marker.left + 'px';
+					markerStyle.width = marker.width + 'px';
 					break;
 				case 'enter':
-					marker.mark.style.left = leftElement + 'px';
-					marker.mark.style.width = widthElement + 'px';
+					markerStyle.left = leftElement + 'px';
+					markerStyle.width = widthElement + 'px';
 					break;
 				default:
 					break;
@@ -134,8 +135,6 @@ const HeaderMenu: FC<HeaderMenuProps> = ({ userAvatar }) => {
 		}
 		return <Link href={text === 'Trainings' ? '/trainings' : path} id={id} className={pathname === path ? `${cl.menu__link} ${cl.active}` : cl.menu__link} onMouseEnter={(e) => markIndicator(e, 'enter')} onClick={(e) => markIndicator(e, 'click')} onMouseLeave={(e) => markIndicator(e, 'leave')}>{text}</Link>
 	}
-
-
 
 	return <>
 		<nav className={isMobileMenuActive ? `${cl.menu} ${cl.active}` : cl.menu}>

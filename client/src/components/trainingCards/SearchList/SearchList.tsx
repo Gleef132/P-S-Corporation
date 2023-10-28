@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import { FC, useEffect, useRef, useState } from 'react'
 import TrainingCard from '../TrainingCard/TrainingCard'
 import cl from './SearchList.module.scss'
+import Loader from '@/components/ui/loader/Loader'
 
 
 const SearchList: FC = () => {
@@ -63,6 +64,7 @@ const SearchList: FC = () => {
 				if (index === 11 && !firstDataLoaded) setFirstDataLoaded(true)
 				return <TrainingCard isMyTraining={false} primary={false} training={item} key={item._id} />
 			})}
+			{isLoading && <div className={cl.loader}><Loader /></div>}
 			<div style={{ position: 'absolute', bottom: '-90px', display: firstDataLoaded ? 'block' : 'none' }} ref={lastElement}></div>
 		</div>
 	)

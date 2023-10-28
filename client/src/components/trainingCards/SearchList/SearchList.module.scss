@@ -13,4 +13,12 @@
 	max-width: $maxWidthContainer - 200px;
 	margin: 0px auto;
 	position: relative;
+	min-height: calc(100vh - 300px);
+}
+
+.loader {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }

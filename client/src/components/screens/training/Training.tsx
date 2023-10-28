@@ -91,7 +91,10 @@ const Training: FC<ITraining> = (training) => {
 						<div className={cl.training__comment__leave}>
 							<div className={cl.training__comment__img}>
 								<img src={profileImg} alt=""
-									style={{ zIndex: isAuth ? '1' : '-1' }}
+									onLoad={(e) => {
+										e.currentTarget.style.zIndex = '1';
+										(e.currentTarget.parentElement as HTMLElement).style.background = 'none'
+									}}
 								/>
 							</div>
 							<div className={cl.training__comment__content}>

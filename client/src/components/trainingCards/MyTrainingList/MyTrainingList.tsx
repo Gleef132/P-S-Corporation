@@ -7,6 +7,7 @@ import TrainingCard from '../TrainingCard/TrainingCard'
 import { trainingSlice } from '@/store/reducers/TrainingSlice'
 import { useAppDispatch, useAppSelector } from '@/hooks/redux'
 import { notFoundSlice } from '@/store/reducers/NotFoundSlice'
+import Loader from '@/components/ui/loader/Loader'
 
 interface Props {
 	sortBy: string;
@@ -84,6 +85,7 @@ const MyTrainingList: FC<Props> = ({ sortBy }) => {
 				if (index === 11 && !firstDataLoaded) setFirstDataLoaded(true)
 				return <TrainingCard isMyTraining={true} primary={true} training={item} key={item._id} />
 			})}
+			{isLoading && <div className={cl.loader}><Loader /></div>}
 			<div style={{ position: 'absolute', bottom: '-90px', display: firstDataLoaded ? 'block' : 'none' }} ref={lastElement}></div>
 		</div>
 	)
