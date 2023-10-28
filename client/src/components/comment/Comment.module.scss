@@ -46,11 +46,14 @@
 	}
 
 	&__text {
+		width: calc(100% - 45px);
 		font-size: 14px;
 		max-height: 57px;
-		padding: 3px 0;
+		padding: 3px 10px 3px 0;
 		overflow: hidden;
 		white-space: pre-wrap;
+		text-overflow: ellipsis;
+		line-height: 1.4;
 
 		&.active {
 			max-height: 100%;

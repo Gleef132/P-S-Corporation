@@ -9,12 +9,14 @@ const Comment: FC<IComment> = (comment) => {
 
 	function isOverflowed(el: any): boolean {
 		if (el) {
-			return el.scrollHeight > 58
+			console.log(el.offsetWidth / 14)
+			// return el.scrollHeight > 58
+			return el.scrollWidth > el.offsetWidth || el.scrollHeight > el.offsetHeight;
 		}
 		return false
 	}
 
-	const ref = useRef(null)
+	const ref = useRef<HTMLParagraphElement | null>(null)
 
 	useEffect(() => {
 		setBtnShow(isOverflowed(ref.current))
@@ -37,7 +39,12 @@ const Comment: FC<IComment> = (comment) => {
 			</div>
 			<p ref={ref} className={textShow ? `${cl.comment__text} ${cl.active}` : cl.comment__text}>{comment.comment}
 			</p>
-			<button className={btnShow ? `${cl.comment__btn} ${cl.active}` : cl.comment__btn} onClick={() => setTextShow(!textShow)}>Read more</button>
+			<button className={btnShow ? `${cl.comment__btn} ${cl.active}` : cl.comment__btn} onClick={() => {
+				setTextShow(!textShow)
+				if (ref.current) {
+					ref.current.style.wordBreak = !textShow ? 'break-all' : 'keep-all'
+				}
+			}}>Read more</button>
 		</div>
 	</div>
 }
