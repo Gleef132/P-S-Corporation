@@ -10,8 +10,12 @@
 		transform: translate(-50%, -50%);
 		left: 50%;
 		top: 50%;
-		@include adaptiv-value('font-size', 24, 18, 0);
-		color: $textErrorColor;
+
+		&__error {
+			@include adaptiv-value('font-size', 24, 18, 0);
+			color: $textErrorColor;
+			white-space: nowrap;
+		}
 	}
 
 	&__list {
