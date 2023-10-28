@@ -189,7 +189,7 @@ const SearchComponent: FC = () => {
 								</div>
 							</div>
 							<ul className={cl.search__mobile__list}>
-								{isLoading ?
+								{isLoading || error ?
 									<div className={cl.search__loader}>
 										{error ?
 											<div className={cl.search__loader__error}>
