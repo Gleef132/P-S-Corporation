@@ -66,6 +66,12 @@ const Training: FC<ITraining> = (training) => {
 			.catch(e => console.log(e))
 	}
 
+	useEffect(() => {
+		if (!isAuth) {
+			setCommentActive(false)
+		}
+	}, [isAuth])
+
 	useAutosizeTextArea(textAreaRef.current, value)
 
 	return <section className={cl.training}>
