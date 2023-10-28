@@ -1,8 +1,5 @@
 export interface ISearchTitles {
 	titles: string[]
 	isLoading?: boolean
-	error?: string
-	data?: {
-		message: string
-	}
+	error?: string | any
 }

@@ -19,7 +19,7 @@ export const searchTitleSlice = createSlice({
 		changeIsLoading(state, action: PayloadAction<boolean>) {
 			state.isLoading = action.payload
 		},
-		changeError(state, action: PayloadAction<string>) {
+		changeError(state, action: PayloadAction<string | any>) {
 			state.error = action.payload
 		}
 
