@@ -90,12 +90,15 @@ const Training: FC<ITraining> = (training) => {
 						<div className={cl.training__comments__count}>{data?.countComments} comments</div>
 						<div className={cl.training__comment__leave}>
 							<div className={cl.training__comment__img}>
-								<img src={profileImg} alt=""
-									onLoad={(e) => {
-										e.currentTarget.style.zIndex = '1';
-										(e.currentTarget.parentElement as HTMLElement).style.background = 'none'
-									}}
-								/>
+								{isAuth ?
+									<img src={profileImg} alt=""
+										onLoad={(e) => {
+											e.currentTarget.style.zIndex = '1';
+											(e.currentTarget.parentElement as HTMLElement).style.background = 'none'
+										}}
+									/> :
+									<div className={cl.training__comment__img__imitation}></div>
+								}
 							</div>
 							<div className={cl.training__comment__content}>
 								<textarea ref={textAreaRef} className={isAuth ? cl.training__comment__input : `${cl.training__comment__input} ${cl.active}`} placeholder={isAuth ? 'Enter text' : 'You need to register to leave a comment'} disabled={isAuth ? false : true} value={value} onChange={(e) => setValue(e.target.value)}
