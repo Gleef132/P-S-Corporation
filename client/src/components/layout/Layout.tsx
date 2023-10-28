@@ -9,7 +9,7 @@ import Header from './header/Header';
 const Layout: FC<PropsWithChildren<unknown>> = ({ children }) => {
 	const { message: alertKey } = useAppSelector((state) => state.alertReducer);
 	const { saveSearchTitles, changeIsLoading, changeError } = searchTitleSlice.actions;
-	const { data, isLoading, isError } = trainingApi.useGetAllTitlesQuery('')
+	const { data, isLoading, isError, error } = trainingApi.useGetAllTitlesQuery('')
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
@@ -17,7 +17,7 @@ const Layout: FC<PropsWithChildren<unknown>> = ({ children }) => {
 		if (isError) {
 			dispatch(changeError(data?.message!))
 		}
-		console.log(isError, data)
+		console.log(isError, data?.message, error)
 		if (!data) return;
 		dispatch(saveSearchTitles({ titles: data?.titles, isLoading: isLoading, error: data.message }));
 	}, [data, isLoading, isError]);
