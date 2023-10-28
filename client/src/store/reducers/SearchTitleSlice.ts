@@ -4,7 +4,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 const initialState: ISearchTitles = {
 	titles: [],
 	isLoading: false,
-	error: ''
+	error: '',
 }
 
 export const searchTitleSlice = createSlice({
