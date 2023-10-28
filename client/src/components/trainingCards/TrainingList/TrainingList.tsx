@@ -4,6 +4,7 @@ import { trainingApi } from '@/services/TrainingService'
 import { FC, useEffect, useRef, useState } from 'react'
 import TrainingCard from '../TrainingCard/TrainingCard'
 import cl from './TrainingList.module.scss'
+import Loader from '@/components/ui/loader/Loader'
 
 interface Props {
 	sortOption: string;
@@ -56,6 +57,7 @@ const TrainingList: FC<Props> = ({ sortBy, sortOption }) => {
 				if (index === 11 && !firstDataLoaded) setFirstDataLoaded(true)
 				return <TrainingCard isMyTraining={false} primary={true} training={item} key={item._id} />
 			})}
+			{isLoading && <Loader />}
 			<div style={{ position: 'absolute', bottom: '-90px', display: firstDataLoaded ? 'block' : 'none' }} ref={lastElement}></div>
 		</div>
 	)
