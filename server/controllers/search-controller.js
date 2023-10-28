@@ -5,8 +5,7 @@ class SearchController {
 		try {
 			const trainings = await Training.find()
 			const titles = trainings.map(t => t.title.toLowerCase())
-			// res.json({ titles: titles })
-			res.status(400).json({ message: 'Error' })
+			res.json({ titles: titles })
 		} catch (e) {
 			console.log(e)
 			res.status(400).json({ message: 'Error' })
