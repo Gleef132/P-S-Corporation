@@ -124,6 +124,8 @@ const SearchComponent: FC = () => {
 
 	const foundTitles = titles ? titles?.filter((title) => title.includes(copyValue.toLowerCase())) : []
 
+	console.log(error)
+
 	return (
 		<div className={cl.search}>
 			<div className={cl.search__body}>

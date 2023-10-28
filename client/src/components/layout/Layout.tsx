@@ -19,7 +19,7 @@ const Layout: FC<PropsWithChildren<unknown>> = ({ children }) => {
 		}
 		if (!data) return;
 		dispatch(saveSearchTitles({ titles: data?.titles, isLoading: isLoading, error: data.message }));
-	}, [data, isLoading]);
+	}, [data]);
 
 	return (
 		<>
