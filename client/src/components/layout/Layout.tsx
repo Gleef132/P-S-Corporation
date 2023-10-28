@@ -13,13 +13,13 @@ const Layout: FC<PropsWithChildren<unknown>> = ({ children }) => {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		dispatch(changeIsLoading(true));
+		dispatch(changeIsLoading(isLoading));
 		if (isError) {
 			dispatch(changeError(data?.error!))
 		}
 		if (!data) return;
 		dispatch(saveSearchTitles({ titles: data?.titles, isLoading: isLoading, error: data.message }));
-	}, [data]);
+	}, [data, isLoading]);
 
 	return (
 		<>
