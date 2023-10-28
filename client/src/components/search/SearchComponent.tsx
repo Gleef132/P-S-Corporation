@@ -124,8 +124,6 @@ const SearchComponent: FC = () => {
 
 	const foundTitles = titles ? titles?.filter((title) => title.includes(copyValue.toLowerCase())) : []
 
-	console.log(error)
-
 	return (
 		<div className={cl.search}>
 			<div className={cl.search__body}>
@@ -147,7 +145,7 @@ const SearchComponent: FC = () => {
 								tabIndex={1}
 							/>
 							<div className={cl.search__list}>
-								{isLoading ?
+								{isLoading || error ?
 									<div className={cl.search__loader}>
 										{error ?
 											error :
