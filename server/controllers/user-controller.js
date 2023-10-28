@@ -121,7 +121,6 @@ class UserController {
 
 	async userChangeData(req, res) {
 		try {
-			res.status(400).json({ message: 'Get error' })
 			const { login, password, email, userName } = req.body
 			const hashPassword = bcrypt.hashSync(password, 7)
 			const token = req.headers.authorization.split(' ')[1]
