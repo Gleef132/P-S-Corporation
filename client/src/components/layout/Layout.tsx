@@ -15,7 +15,7 @@ const Layout: FC<PropsWithChildren<unknown>> = ({ children }) => {
 	useEffect(() => {
 		dispatch(changeIsLoading(isLoading));
 		if (isError) {
-			dispatch(changeError(data?.data?.message!))
+			dispatch(changeError(error.data.message))
 		}
 		if (!data) return;
 		dispatch(saveSearchTitles({ titles: data?.titles, isLoading: isLoading }));
