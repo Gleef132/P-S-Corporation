@@ -6,7 +6,7 @@ import Loader from '@/components/ui/loader/Loader'
 
 const Profile: FC = () => {
 
-	const [file, setFile] = useState<File>()
+	const [file, setFile] = useState<File | string>('')
 	const [login, setLogin] = useState<string>('')
 	const [password, setPassword] = useState<string>('')
 	const [email, setEmail] = useState<string>('')
@@ -34,15 +34,25 @@ const Profile: FC = () => {
 				.then(res => {
 					setIsLoading(false)
 					setIsError(false)
+					dataReload()
 				})
 				.catch(e => {
 					setIsLoading(false)
 					setError('An error occurred while changing data')
 					setIsError(true)
+					dataReload()
 				})
 		} else {
 			setError('Please change your saving data')
 		}
+	}
+
+	const dataReload = () => {
+		setFile('')
+		setLogin('')
+		setPassword('')
+		setEmail('')
+		setFirstName('')
 	}
 
 	const fileChangeHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
