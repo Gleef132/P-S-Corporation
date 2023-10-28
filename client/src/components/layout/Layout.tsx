@@ -8,12 +8,15 @@ import Header from './header/Header';
 
 const Layout: FC<PropsWithChildren<unknown>> = ({ children }) => {
 	const { message: alertKey } = useAppSelector((state) => state.alertReducer);
-	const { saveSearchTitles, changeIsLoading } = searchTitleSlice.actions;
-	const { data, isLoading } = trainingApi.useGetAllTitlesQuery('')
+	const { saveSearchTitles, changeIsLoading, changeError } = searchTitleSlice.actions;
+	const { data, isLoading, isError } = trainingApi.useGetAllTitlesQuery('')
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
 		dispatch(changeIsLoading(true));
+		if (isError) {
+			dispatch(changeError(data?.error!))
+		}
 		if (!data) return;
 		dispatch(saveSearchTitles({ titles: data?.titles, isLoading: isLoading, error: data.message }));
 	}, [data]);
