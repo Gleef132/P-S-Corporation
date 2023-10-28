@@ -1,4 +1,5 @@
 import { IResponse } from '@/models/IResponse'
+import { ISearchTitles } from '@/models/ISearchTitles'
 import { ISort } from '@/models/ISort'
 import { IComment, ITraining } from '@/models/ITraining'
 import { IPopularTrainings } from '@/models/ITrainings'
@@ -118,7 +119,7 @@ export const trainingApi = createApi({
 			}),
 			providesTags: result => ['Comments']
 		}),
-		getAllTitles: build.query<string[], string>({
+		getAllTitles: build.query<ISearchTitles, string>({
 			query: () => ({
 				url: '/titles',
 				method: 'GET',

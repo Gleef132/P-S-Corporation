@@ -5,6 +5,7 @@ import ArrowBack from 'public/arrow-back.svg'
 import { useRouter } from 'next/router'
 import { useAppDispatch, useAppSelector } from '@/hooks/redux'
 import { notFoundSlice } from '@/store/reducers/NotFoundSlice'
+import Loader from '../ui/loader/Loader'
 
 const SearchComponent: FC = () => {
 
@@ -13,7 +14,7 @@ const SearchComponent: FC = () => {
 	const [searchLinkActiveIndex, setSearchLinkActiveIndex] = useState<number>(-1)
 	const [isShowMobileSearch, setIsShowMobileSearch] = useState<boolean>(false)
 
-	const { titles } = useAppSelector(state => state.searchTitleSlice)
+	const { titles, isLoading, error } = useAppSelector(state => state.searchTitleSlice)
 
 	const { push, query } = useRouter()
 	const dispatch = useAppDispatch()
@@ -121,7 +122,7 @@ const SearchComponent: FC = () => {
 		})
 	}, [])
 
-	const foundTitles = titles?.filter((title) => title.includes(copyValue.toLowerCase()))
+	const foundTitles = titles ? titles?.filter((title) => title.includes(copyValue.toLowerCase())) : []
 
 	return (
 		<div className={cl.search}>
@@ -144,13 +145,21 @@ const SearchComponent: FC = () => {
 								tabIndex={1}
 							/>
 							<div className={cl.search__list}>
-								{foundTitles?.map((title, index) => index <= 10 ?
-									<li key={index} className={searchLinkActiveIndex === index ? `${cl.search__link} ${cl.active}` : cl.search__link} onClick={(e) => searchClickHandle(e, true)}>
-										<div className={cl.search__link__icon}><SearchLogo /></div>
-										<span>{title}</span>
-									</li>
-									: null
-								)}
+								{isLoading ?
+									<div className={cl.search__loader}>
+										{error ?
+											error :
+											<Loader />
+										}
+									</div> :
+									foundTitles?.map((title, index) => index <= 10 ?
+										<li key={index} className={searchLinkActiveIndex === index ? `${cl.search__link} ${cl.active}` : cl.search__link} onClick={(e) => searchClickHandle(e, true)}>
+											<div className={cl.search__link__icon}><SearchLogo /></div>
+											<span>{title}</span>
+										</li>
+										: null
+									)
+								}
 							</div>
 						</label>
 						<div className={cl.search__icon} onClick={(e) => searchClickHandle(e, false)} tabIndex={2} onKeyDown={searchKeyHandle}>
@@ -178,10 +187,18 @@ const SearchComponent: FC = () => {
 								</div>
 							</div>
 							<ul className={cl.search__mobile__list}>
-								{foundTitles?.map((title, index) => index <= 25 ?
-									<li key={index} className={cl.search__mobile__link} onClick={(e) => searchClickHandle(e, true)}>{title}</li>
-									: null
-								)}
+								{isLoading ?
+									<div className={cl.search__loader}>
+										{error ?
+											error :
+											<Loader />
+										}
+									</div> :
+									foundTitles?.map((title, index) => index <= 25 ?
+										<li key={index} className={cl.search__mobile__link} onClick={(e) => searchClickHandle(e, true)}>{title}</li>
+										: null
+									)
+								}
 							</ul>
 						</div>
 						<button className={cl.search__mobile__btn} onClick={showSearchMobile}>
