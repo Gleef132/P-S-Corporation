@@ -148,7 +148,9 @@ const SearchComponent: FC = () => {
 								{isLoading || error ?
 									<div className={cl.search__loader}>
 										{error ?
-											error :
+											<div>
+												{error}
+											</div> :
 											<Loader />
 										}
 									</div> :
