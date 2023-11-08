@@ -5,6 +5,8 @@ import { FC, useEffect, useRef, useState } from 'react'
 import TrainingCard from '../TrainingCard/TrainingCard'
 import cl from './TrainingList.module.scss'
 import Loader from '@/components/ui/loader/Loader'
+import { useAppDispatch, useAppSelector } from '@/hooks/redux'
+import { notFoundSlice } from '@/store/reducers/NotFoundSlice'
 
 interface Props {
 	sortOption: string;
@@ -22,6 +24,8 @@ const TrainingList: FC<Props> = ({ sortBy, sortOption }) => {
 	const { data, refetch, isLoading, isFetching } = trainingApi.useFetchTrainingsQuery({ limit, page, sortBy: sortBy, sortOption: sortOption })
 
 	const lastElement = useRef<HTMLDivElement>(null)
+	const dispatch = useAppDispatch()
+	const { searchNotFoundChange } = notFoundSlice.actions
 
 	const fetchTrainings = async () => {
 		if (isLoading) return;
@@ -49,6 +53,16 @@ const TrainingList: FC<Props> = ({ sortBy, sortOption }) => {
 		setPage(1)
 		fetchTrainings()
 	}, [sortBy])
+
+	useEffect(() => {
+		if (data) {
+			if (data.data.length === 0) {
+				dispatch(searchNotFoundChange(true))
+			} else {
+				dispatch(searchNotFoundChange(false))
+			}
+		}
+	}, [data])
 
 
 	return (

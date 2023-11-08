@@ -6,6 +6,7 @@
 	min-height: 100vh;
 	padding-top: 60px;
 	position: relative;
+	display: flex;
 
 	&__bg {
 		position: relative;
@@ -25,6 +26,7 @@
 		@include adaptiv-value('gap', 60, 40, 0);
 		padding: 0 30px;
 		@include adaptiv-value('margin-top', 200, 130, 0);
+		@include adaptiv-value('margin-bottom', 100, 50, 0);
 	}
 
 	&__title {

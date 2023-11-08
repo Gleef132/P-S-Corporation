@@ -17,14 +17,19 @@ const Helper = ({ }, ref: Ref<RefType>) => {
 		let { left } = e.currentTarget.getBoundingClientRect()
 
 		if (refHelper.current) {
-			let condition = (refHelper.current.offsetWidth / 2 + 10) > left
-			left = condition ? 10 : left
+			let conditionX = (refHelper.current.offsetWidth / 2 + 10) > left
+			let conditionY = refHelper.current.offsetHeight > top - 15
+			let translateX = conditionX ? '' : 'translateX(calc(-50% + 12px))'
+			let translateY = conditionY ? 'translateY(0%)' : 'translateY(-100%)'
+			left = conditionX ? 10 : left
+			top = conditionY ? 15 : top
+
 			refHelper.current.style.opacity = '1'
 			refHelper.current.style.transitionDuration = '.3s'
 			refHelper.current.style.transitionProperty = 'opacity'
 			refHelper.current.style.top = Math.floor(top) - 5 + 'px'
 			refHelper.current.style.left = Math.floor(left) + 'px'
-			refHelper.current.style.transform = condition ? 'scale(1) translateY(-100%)' : 'scale(1) translateX(calc(-50% + 12px)) translateY(-100%)'
+			refHelper.current.style.transform = `scale(1) ${translateX} ${translateY}`
 			refHelper.current.style.transitionDelay = '0s'
 		}
 		// }

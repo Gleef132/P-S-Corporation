@@ -10,7 +10,6 @@ const Comment: FC<IComment> = (comment) => {
 	function isOverflowed(el: any): boolean {
 		if (el) {
 			console.log(el.offsetWidth / 14)
-			// return el.scrollHeight > 58
 			return el.scrollWidth > el.offsetWidth || el.scrollHeight > el.offsetHeight;
 		}
 		return false
@@ -44,7 +43,7 @@ const Comment: FC<IComment> = (comment) => {
 				if (ref.current) {
 					ref.current.style.wordBreak = !textShow ? 'break-all' : 'keep-all'
 				}
-			}}>Read more</button>
+			}}>{textShow ? 'Collapse' : 'Read more'}</button>
 		</div>
 	</div>
 }

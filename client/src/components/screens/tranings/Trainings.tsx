@@ -2,11 +2,15 @@ import TrainingList from '@/components/trainingCards/TrainingList/TrainingList'
 import NavLink from '@/components/ui/nav-link/NavLink'
 import { FC, useState } from 'react'
 import cl from './Trainings.module.scss'
+import { useAppSelector } from '@/hooks/redux'
+import NotFound from '@/components/ui/not-found/NotFound'
+
 
 const Trainings: FC = () => {
 
 	const [sortBy, setSortBy] = useState<string>('All')
 	const [sortOption, setSortOption] = useState<string>('')
+	const { isSearchNotFound: isNotFound } = useAppSelector(state => state.notFoundSlice)
 
 	const clickHandle = (sortBy: string, sortOption: string) => {
 		setSortBy(sortBy)
@@ -30,6 +34,7 @@ const Trainings: FC = () => {
 							<NavLink isActive={sortBy === 'Hard'} childer={'Hard'} onClick={() => clickHandle('Hard', 'level')} />
 						</ul>
 					</nav>
+					{isNotFound && <NotFound text='No results found' />}
 					<TrainingList sortBy={sortBy} sortOption={sortOption} />
 				</div>
 			</div>
