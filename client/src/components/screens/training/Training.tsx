@@ -6,6 +6,7 @@ import { IComment, ITraining } from '@/models/ITraining'
 import { trainingApi } from '@/services/TrainingService'
 import React, { FC, useEffect, useRef, useState } from 'react'
 import cl from './Training.module.scss'
+import Loader from '@/components/ui/loader/Loader'
 
 const Training: FC<ITraining> = (training) => {
 
@@ -125,6 +126,7 @@ const Training: FC<ITraining> = (training) => {
 							{comments.map(item => {
 								return <Comment {...item} key={item._id} />
 							})}
+							{isLoading && <div style={{ margin: '0 auto' }}><Loader /></div>}
 							<div ref={lastComment}></div>
 						</div>
 					</div>
